@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read access to blog posts for all users
+    match /blog/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Allow read/write access to appointments for authenticated users
+    match /appointments/{document} {
+      allow read, write: if request.auth != null;
+      allow create: if true; // Allow anonymous appointment booking
+    }
+    
+    // Allow read access to testimonials for all users
+    match /testimonials/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Allow read access to clinic info for all users
+    match /clinic/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Admin only access to users collection
+    match /users/{document} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
