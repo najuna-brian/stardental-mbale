@@ -103,10 +103,10 @@ const ContactPreview = () => {
                 <div>
                   <h3 className="font-semibold text-gray-800 mb-2">Email Us</h3>
                   <a 
-                    href="mailto:info@stardentalmbale.com" 
+                    href="mailto:stardentalclinic.mbale@gmail.com" 
                     className="text-gray-600 hover:text-primary-500 transition-colors"
                   >
-                    info@stardentalmbale.com
+                    stardentalclinic.mbale@gmail.com
                   </a>
                   <p className="text-sm text-gray-500 mt-1">We'll respond within 24 hours</p>
                 </div>

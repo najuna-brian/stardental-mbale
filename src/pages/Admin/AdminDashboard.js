@@ -153,7 +153,7 @@ const SettingsPanel = () => {
               <input
                 type="email"
                 className="form-input"
-                defaultValue="info@stardentalmbale.com"
+                defaultValue="stardentalclinic.mbale@gmail.com"
               />
             </div>
             <div>

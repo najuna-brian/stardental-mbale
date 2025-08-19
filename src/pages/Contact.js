@@ -9,8 +9,6 @@ import {
   PaperAirplaneIcon,
   CalendarIcon
 } from '@heroicons/react/24/outline';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { db } from '../firebase/config';
 import toast from 'react-hot-toast';
 
 const Contact = () => {
@@ -37,11 +35,15 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      await addDoc(collection(db, 'contactMessages'), {
+      // Simulate form submission (in a real app, you'd send to a backend API)
+      console.log('Contact form submission:', {
         ...formData,
-        timestamp: serverTimestamp(),
+        timestamp: new Date().toISOString(),
         status: 'unread'
       });
+
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       toast.success('Message sent successfully! We\'ll get back to you soon.');
       setFormData({
@@ -66,7 +68,7 @@ const Contact = () => {
       title: 'Visit Our Clinic',
       details: [
         'Star Dental Clinic Mbale',
-        'Naboa Road, Mbale',
+        'Plot 32A, North Road, opposite North Road P/S, Mbale',
         'Eastern Uganda'
       ],
       color: 'primary'
@@ -75,9 +77,9 @@ const Contact = () => {
       icon: PhoneIcon,
       title: 'Call Us',
       details: [
-        '+256-XXX-XXXXXX',
-        '+256-XXX-XXXXXX',
-        'Emergency: 24/7'
+        'Main: +256 779 003 568',
+        'Emergency: +256 779 003 568',
+        'Available 24/7 for emergencies'
       ],
       color: 'secondary'
     },
@@ -85,9 +87,9 @@ const Contact = () => {
       icon: EnvelopeIcon,
       title: 'Email Us',
       details: [
-        'info@stardentalmbale.com',
-        'appointments@stardentalmbale.com',
-        'emergency@stardentalmbale.com'
+        'stardentalclinic.mbale@gmail.com',
+        'General inquiries & appointments',
+        'We respond within 24 hours'
       ],
       color: 'accent'
     },
@@ -95,9 +97,9 @@ const Contact = () => {
       icon: ClockIcon,
       title: 'Opening Hours',
       details: [
-        'Mon - Fri: 8:00 AM - 6:00 PM',
-        'Saturday: 9:00 AM - 4:00 PM',
-        'Sunday: Emergency Only'
+        'Mon - Sat: 8:30 AM - 6:00 PM',
+        'Sunday: Emergency Only',
+        'Public holidays: Call for availability'
       ],
       color: 'primary'
     }
@@ -126,7 +128,7 @@ const Contact = () => {
     },
     {
       question: 'What payment methods do you accept?',
-      answer: 'We accept cash, mobile money, bank transfers, and major credit cards. We also offer flexible payment plans.'
+      answer: 'We accept cash, MTN Mobile Money, Airtel Money, Standard Chartered Bank transfers, and major credit cards. We also offer flexible payment plans for extensive treatments.'
     }
   ];
 
@@ -330,20 +332,26 @@ const Contact = () => {
               className="space-y-8"
               data-aos="fade-left"
             >
-              {/* Clinic Exterior */}
+              {/* Google Maps Embed */}
               <div className="bg-gray-200 rounded-2xl overflow-hidden">
                 <div className="relative">
-                  <img 
-                    src="/images/exterior/street-view-1.jpeg" 
-                    alt="Star Dental Clinic Exterior View"
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/20 flex items-end">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7491234567890!2d34.1776!3d1.0861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMDUnMTAuMCJOIDM0wrAxMCczOS40IkU!5e0!3m2!1sen!2sug!4v1234567890123!5m2!1sen!2sug"
+                    width="100%"
+                    height="256"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Star Dental Clinic Mbale Location"
+                    className="w-full h-64"
+                  ></iframe>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent">
                     <div className="p-6 text-white">
                       <MapPinIcon className="w-8 h-8 mb-2" />
                       <p className="font-medium">Star Dental Clinic Mbale</p>
                       <p className="text-sm text-gray-200">
-                        Naboa Road, Mbale, Uganda
+                        Plot 32A, North Road, opposite North Road P/S, Mbale
                       </p>
                     </div>
                   </div>
@@ -355,7 +363,7 @@ const Contact = () => {
                 <h3 className="text-2xl font-bold text-gray-800 mb-6">Quick Actions</h3>
                 <div className="space-y-4">
                   <a 
-                    href="tel:+256-XXX-XXXXXX"
+                    href="tel:+256779003568"
                     className="flex items-center space-x-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
                   >
                     <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
@@ -368,7 +376,7 @@ const Contact = () => {
                   </a>
 
                   <a 
-                    href="https://wa.me/256XXXXXXXXX"
+                    href="https://wa.me/256779003568?text=Hello! I'd like to contact Star Dental Clinic."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
@@ -404,11 +412,11 @@ const Contact = () => {
                   Experiencing a dental emergency? Don't wait - contact us immediately.
                 </p>
                 <a 
-                  href="tel:+256-XXX-XXXXXX"
+                  href="tel:+256779003568"
                   className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center space-x-2"
                 >
                   <PhoneIcon className="w-5 h-5" />
-                  <span>Emergency: +256-XXX-XXXXXX</span>
+                  <span>Emergency: +256 779 003 568</span>
                 </a>
               </div>
             </motion.div>

@@ -2,81 +2,52 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { StarIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
-import { testimonialService } from '../../firebase/firestore';
 
 const TestimonialsPreview = () => {
-  const [testimonials, setTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const allTestimonials = await testimonialService.getAllTestimonials();
-        setTestimonials(allTestimonials);
-      } catch (error) {
-        console.error('Error fetching testimonials:', error);
-        // Fallback to sample data
-        setTestimonials(sampleTestimonials);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTestimonials();
-  }, []);
-
-  // Auto-rotate testimonials
-  useEffect(() => {
-    if (testimonialsToShow.length > 1) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % testimonialsToShow.length);
-      }, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [testimonials]);
-
-  // Sample testimonials for fallback
+  // Sample testimonials data
   const sampleTestimonials = [
     {
       id: '1',
-      name: 'Sarah Namukasa',
+      name: 'Sarah Mukasa',
       location: 'Mbale',
       rating: 5,
-      text: 'Outstanding service! The team at Star Dental made me feel comfortable throughout my treatment. My smile has never looked better!',
       treatment: 'Teeth Whitening',
-      image: null
+      text: 'The team at Star Dental Clinic is absolutely amazing! I was nervous about getting dental treatment, but Dr. Charity and her team made me feel so comfortable. The procedure was painless, and my teeth look fantastic. I can\'t stop smiling!',
+      date: new Date('2024-01-15')
     },
     {
       id: '2',
       name: 'John Wanyama',
-      location: 'Pallisa',
+      location: 'Tororo',
       rating: 5,
-      text: 'Professional, caring, and modern facilities. I drove from Pallisa specifically for their services and it was worth every mile.',
-      treatment: 'Dental Implants',
-      image: null
+      treatment: 'Teeth Whitening',
+      text: 'I\'ve been self-conscious about my teeth for years due to staining from coffee. The professional whitening treatment here exceeded my expectations. My teeth are now several shades whiter, and the results look completely natural. Highly recommend!',
+      date: new Date('2024-01-20')
     },
     {
       id: '3',
-      name: 'Grace Nakato',
+      name: 'Grace Namukose',
       location: 'Mbale',
       rating: 5,
-      text: 'My children love coming here! The staff is so patient and gentle with kids. Highly recommend for families.',
-      treatment: 'Pediatric Care',
-      image: null
-    },
-    {
-      id: '4',
-      name: 'David Mukhwana',
-      location: 'Tororo',
-      rating: 5,
-      text: 'Fast, efficient, and pain-free treatment. The quality of care exceeded my expectations. Thank you Star Dental!',
-      treatment: 'Root Canal',
-      image: null
+      treatment: 'Orthodontics',
+      text: 'My teenage daughter needed braces, and we couldn\'t be happier with the results. The orthodontist explained everything clearly, and my daughter actually looked forward to her appointments. Her smile transformation is incredible!',
+      date: new Date('2024-02-05')
     }
   ];
 
-  const testimonialsToShow = testimonials.length > 0 ? testimonials : sampleTestimonials;
+  const testimonials = sampleTestimonials;
+
+  // Auto-rotate testimonials
+  useEffect(() => {
+    if (testimonials.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [testimonials]);
 
   const renderStars = (rating) => {
     return [...Array(5)].map((_, i) => (
@@ -86,19 +57,6 @@ const TestimonialsPreview = () => {
       />
     ));
   };
-
-  if (loading) {
-    return (
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center">
-            <div className="loading-spinner mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading testimonials...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="section-padding bg-white">
@@ -130,7 +88,7 @@ const TestimonialsPreview = () => {
             </div>
 
             <div className="relative z-10">
-              {testimonialsToShow.length > 0 && (
+              {testimonials.length > 0 && (
                 <motion.div
                   key={currentIndex}
                   initial={{ opacity: 0, y: 20 }}
@@ -144,28 +102,28 @@ const TestimonialsPreview = () => {
                       <path d="M10 8v8c0 2.2-1.8 4-4 4v4c4.4 0 8-3.6 8-8V8h-4zm12 0v8c0 2.2-1.8 4-4 4v4c4.4 0 8-3.6 8-8V8h-4z"/>
                     </svg>
                     <p className="text-xl md:text-2xl leading-relaxed mb-6">
-                      "{testimonialsToShow[currentIndex]?.text}"
+                      "{testimonials[currentIndex]?.text}"
                     </p>
                   </div>
 
                   {/* Rating */}
                   <div className="flex justify-center space-x-1 mb-6">
-                    {renderStars(testimonialsToShow[currentIndex]?.rating || 5)}
+                    {renderStars(testimonials[currentIndex]?.rating || 5)}
                   </div>
 
                   {/* Patient Info */}
                   <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4">
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                       <span className="text-2xl font-bold">
-                        {testimonialsToShow[currentIndex]?.name?.charAt(0) || 'P'}
+                        {testimonials[currentIndex]?.name?.charAt(0) || 'P'}
                       </span>
                     </div>
                     <div className="text-center sm:text-left">
                       <p className="font-semibold text-lg">
-                        {testimonialsToShow[currentIndex]?.name}
+                        {testimonials[currentIndex]?.name}
                       </p>
                       <p className="text-primary-100">
-                        {testimonialsToShow[currentIndex]?.location} • {testimonialsToShow[currentIndex]?.treatment}
+                        {testimonials[currentIndex]?.location} • {testimonials[currentIndex]?.treatment}
                       </p>
                     </div>
                   </div>
@@ -174,9 +132,9 @@ const TestimonialsPreview = () => {
             </div>
 
             {/* Navigation Dots */}
-            {testimonialsToShow.length > 1 && (
+            {testimonials.length > 1 && (
               <div className="flex justify-center space-x-2 mt-8">
-                {testimonialsToShow.map((_, index) => (
+                {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
@@ -195,7 +153,7 @@ const TestimonialsPreview = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
           data-aos="fade-up"
         >
-          {testimonialsToShow.slice(0, 3).map((testimonial, index) => (
+          {testimonials.slice(0, 3).map((testimonial, index) => (
             <div key={testimonial.id} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow">
               <div className="flex items-center space-x-1 mb-4">
                 {renderStars(testimonial.rating)}

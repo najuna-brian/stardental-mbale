@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const WhatsAppFloat = () => {
-  const whatsappNumber = "+256XXXXXXXXX"; // Replace with actual number
+  const whatsappNumber = "+256779003568";
   const message = "Hello! I'd like to book an appointment at Star Dental Clinic.";
   
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;

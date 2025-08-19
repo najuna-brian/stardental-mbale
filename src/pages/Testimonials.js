@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   StarIcon,
@@ -6,13 +6,14 @@ import {
   ChevronRightIcon,
   ChatBubbleLeftEllipsisIcon
 } from '@heroicons/react/24/solid';
-import { collection, getDocs, orderBy, query, limit } from 'firebase/firestore';
-import { db } from '../firebase/config';
+import { 
+  FaFacebook, 
+  FaInstagram, 
+  FaTwitter 
+} from 'react-icons/fa';
 
 const Testimonials = () => {
-  const [testimonials, setTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
 
   // Sample testimonials for demonstration
   const sampleTestimonials = [
@@ -72,41 +73,8 @@ const Testimonials = () => {
     }
   ];
 
-  useEffect(() => {
-    fetchTestimonials();
-  }, []);
-
-  const fetchTestimonials = async () => {
-    try {
-      // Try to fetch from Firebase first
-      const testimonialsRef = collection(db, 'testimonials');
-      const q = query(
-        testimonialsRef,
-        orderBy('createdAt', 'desc'),
-        limit(20)
-      );
-      
-      const querySnapshot = await getDocs(q);
-      const testimonialsData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-        date: doc.data().createdAt?.toDate()
-      }));
-      
-      // If no testimonials in Firebase, use sample data
-      if (testimonialsData.length === 0) {
-        setTestimonials(sampleTestimonials);
-      } else {
-        setTestimonials(testimonialsData);
-      }
-    } catch (error) {
-      console.error('Error fetching testimonials:', error);
-      // Fallback to sample data
-      setTestimonials(sampleTestimonials);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Use static testimonials data
+  const testimonials = sampleTestimonials;
 
   const nextTestimonial = () => {
     setCurrentIndex((prevIndex) => 
@@ -134,17 +102,6 @@ const Testimonials = () => {
       />
     ));
   };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen pt-20 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading testimonials...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen pt-20">
@@ -378,14 +335,32 @@ const Testimonials = () => {
             <div className="mt-8 pt-8 border-t border-gray-200">
               <p className="text-gray-600 mb-4">Follow us on social media for more patient stories:</p>
               <div className="flex justify-center space-x-6">
-                <a href="#" className="text-gray-400 hover:text-primary-500 transition-colors">
-                  Facebook
+                <a 
+                  href="https://facebook.com/stardentalclinicmbale" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center space-x-2 text-gray-400 hover:text-primary-500 transition-colors"
+                >
+                  <FaFacebook className="w-5 h-5" />
+                  <span>Facebook</span>
                 </a>
-                <a href="#" className="text-gray-400 hover:text-primary-500 transition-colors">
-                  Instagram
+                <a 
+                  href="https://instagram.com/stardentalclinicmbale" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center space-x-2 text-gray-400 hover:text-primary-500 transition-colors"
+                >
+                  <FaInstagram className="w-5 h-5" />
+                  <span>Instagram</span>
                 </a>
-                <a href="#" className="text-gray-400 hover:text-primary-500 transition-colors">
-                  Twitter
+                <a 
+                  href="https://twitter.com/stardentalmbale" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center space-x-2 text-gray-400 hover:text-primary-500 transition-colors"
+                >
+                  <FaTwitter className="w-5 h-5" />
+                  <span>Twitter</span>
                 </a>
               </div>
             </div>

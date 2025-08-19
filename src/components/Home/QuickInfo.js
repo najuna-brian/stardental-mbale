@@ -17,9 +17,10 @@ const QuickInfo = () => {
             </div>
             <div>
               <h3 className="font-semibold text-gray-800">Visit Us</h3>
-              <p className="text-gray-600">Mbale City, Eastern Uganda</p>
+              <p className="text-gray-600">Plot 32A, North Road</p>
+              <p className="text-gray-600 text-sm">Opposite North Road P/S, Mbale</p>
               <a 
-                href="https://maps.google.com" 
+                href="https://maps.google.com/maps?q=Star+Dental+Clinic+Mbale" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-primary-500 hover:text-primary-600 text-sm font-medium"
@@ -37,10 +38,10 @@ const QuickInfo = () => {
             <div>
               <h3 className="font-semibold text-gray-800">Call Us</h3>
               <a 
-                href="tel:+256-XXX-XXXXXX" 
+                href="tel:+256779003568" 
                 className="text-gray-600 hover:text-primary-500 transition-colors"
               >
-                +256-XXX-XXXXXX
+                +256779003568
               </a>
               <p className="text-primary-500 text-sm font-medium">Tap to call</p>
             </div>
@@ -53,8 +54,8 @@ const QuickInfo = () => {
             </div>
             <div>
               <h3 className="font-semibold text-gray-800">Open Hours</h3>
-              <p className="text-gray-600">Mon-Fri: 8:00 AM - 6:00 PM</p>
-              <p className="text-gray-600">Sat: 8:00 AM - 2:00 PM</p>
+              <p className="text-gray-600">Mon-Sat: 8:30 AM - 6:00 PM</p>
+              <p className="text-gray-600">Sun: Emergency/On Call</p>
             </div>
           </div>
         </div>

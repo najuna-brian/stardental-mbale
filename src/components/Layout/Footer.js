@@ -6,15 +6,23 @@ import {
   EnvelopeIcon,
   ClockIcon
 } from '@heroicons/react/24/outline';
+import { 
+  FaFacebook, 
+  FaInstagram, 
+  FaTwitter, 
+  FaTiktok, 
+  FaWhatsapp 
+} from 'react-icons/fa';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { name: 'Facebook', href: '#', icon: 'facebook' },
-    { name: 'Instagram', href: '#', icon: 'instagram' },
-    { name: 'Twitter', href: '#', icon: 'twitter' },
-    { name: 'WhatsApp', href: '#', icon: 'whatsapp' }
+    { name: 'Facebook', href: 'https://facebook.com/stardentalclinicmbale', icon: FaFacebook },
+    { name: 'Instagram', href: 'https://instagram.com/stardentalclinicmbale', icon: FaInstagram },
+    { name: 'Twitter', href: 'https://twitter.com/stardentalmbale', icon: FaTwitter },
+    { name: 'TikTok', href: 'https://tiktok.com/@stardentalclinicmbale', icon: FaTiktok },
+    { name: 'WhatsApp', href: 'https://wa.me/256779003568', icon: FaWhatsapp }
   ];
 
   const quickLinks = [
@@ -31,8 +39,8 @@ const Footer = () => {
     'Cosmetic Dentistry',
     'Orthodontics',
     'Teeth Whitening',
-    'Dental Implants',
-    'Pediatric Dentistry'
+    'Pediatric Dentistry',
+    'Oral Surgery'
   ];
 
   return (
@@ -83,19 +91,19 @@ const Footer = () => {
                 <div className="flex items-start space-x-3">
                   <MapPinIcon className="w-5 h-5 text-primary-500 mt-1 flex-shrink-0" />
                   <span className="text-gray-300">
-                    Mbale City, Eastern Uganda
+                    Plot 32A, North Road, opposite North Road P/S, Mbale
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <PhoneIcon className="w-5 h-5 text-primary-500 flex-shrink-0" />
-                  <a href="tel:+256-XXX-XXXXXX" className="text-gray-300 hover:text-white transition-colors">
-                    +256-XXX-XXXXXX
+                  <a href="tel:+256779003568" className="text-gray-300 hover:text-white transition-colors">
+                    +256 779 003 568
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
                   <EnvelopeIcon className="w-5 h-5 text-primary-500 flex-shrink-0" />
-                  <a href="mailto:info@stardentalmbale.com" className="text-gray-300 hover:text-white transition-colors">
-                    info@stardentalmbale.com
+                  <a href="mailto:stardentalclinic.mbale@gmail.com" className="text-gray-300 hover:text-white transition-colors">
+                    stardentalclinic.mbale@gmail.com
                   </a>
                 </div>
               </div>
@@ -137,9 +145,8 @@ const Footer = () => {
                 <div className="flex items-center space-x-3">
                   <ClockIcon className="w-5 h-5 text-primary-500 flex-shrink-0" />
                   <div className="text-gray-300">
-                    <div>Mon - Fri: 8:00 AM - 6:00 PM</div>
-                    <div>Saturday: 8:00 AM - 2:00 PM</div>
-                    <div>Sunday: Closed</div>
+                    <div>Mon - Sat: 8:30 AM - 6:00 PM</div>
+                    <div>Sunday: Emergency Only</div>
                   </div>
                 </div>
               </div>
@@ -147,19 +154,21 @@ const Footer = () => {
               <div>
                 <h5 className="font-semibold mb-4">Follow Us</h5>
                 <div className="flex space-x-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-500 transition-colors"
-                      aria-label={social.name}
-                    >
-                      {/* You can replace these with actual icon components */}
-                      <span className="text-sm font-bold">
-                        {social.icon.charAt(0).toUpperCase()}
-                      </span>
-                    </a>
-                  ))}
+                  {socialLinks.map((social) => {
+                    const IconComponent = social.icon;
+                    return (
+                      <a
+                        key={social.name}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-500 transition-colors"
+                        aria-label={social.name}
+                      >
+                        <IconComponent className="w-5 h-5" />
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>

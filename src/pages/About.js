@@ -12,31 +12,31 @@ import {
 const About = () => {
   const team = [
     {
-      name: 'Dr. Sarah Mukasa',
-      title: 'Chief Dental Officer',
+      name: 'Dr. Charity Mutuwa',
+      title: 'Licensed Dentist',
       specialization: 'General & Cosmetic Dentistry',
-      experience: '8+ years',
-      education: 'DDS - Makerere University',
-      bio: 'Dr. Mukasa is passionate about creating beautiful smiles and has extensive experience in cosmetic dentistry procedures.',
+      experience: '4+ years',
+      education: 'DDS - Fully Licensed',
+      bio: 'Dr. Mutuwa is a fully licensed dentist with extensive experience in general and cosmetic dentistry procedures.',
       image: '/images/staff/staff-demonstration.jpeg'
     },
     {
-      name: 'Dr. James Wanyama',
-      title: 'Senior Dentist',
-      specialization: 'Orthodontics & Oral Surgery',
-      experience: '6+ years',
-      education: 'DDS, MSc Orthodontics',
-      bio: 'Specialized in orthodontic treatments and complex oral surgeries with a gentle approach to patient care.',
-      image: '/images/staff/staff-operating.jpeg'
+      name: 'Ms. Lydia Nakayenze',
+      title: 'Chair Side Assistant',
+      specialization: 'Patient Care & Assistance',
+      experience: '3+ years',
+      education: 'Certified Dental Assistant',
+      bio: 'Ms. Nakayenze provides excellent patient care and assists with all dental procedures, ensuring patient comfort.',
+      image: '/images/staff/lady-staff.jpeg'
     },
     {
-      name: 'Dr. Grace Namuli',
-      title: 'Pediatric Dentist',
-      specialization: 'Pediatric Dentistry',
-      experience: '5+ years',
-      education: 'DDS, Certificate in Pediatric Dentistry',
-      bio: 'Expert in making dental visits fun and comfortable for children while ensuring the highest quality care.',
-      image: '/images/staff/lady-staff.jpeg'
+      name: 'Dr. Avaga Leonard',
+      title: 'Senior Dentist',
+      specialization: 'Clinical & Community Dentistry',
+      experience: '30+ years',
+      education: 'DDS, Community Dentistry Specialist',
+      bio: 'Dr. Avaga brings over three decades of experience in both clinical dentistry and community dental health programs.',
+      image: '/images/staff/staff-operating.jpeg'
     }
   ];
 
@@ -63,34 +63,34 @@ const About = () => {
 
   const timeline = [
     {
-      year: '2019',
-      title: 'Clinic Established',
-      description: 'Star Dental Clinic opened its doors in Mbale with a mission to provide quality dental care.'
-    },
-    {
       year: '2020',
-      title: 'Team Expansion',
-      description: 'Added specialist dentists and modern equipment to serve more patients effectively.'
+      title: 'Clinic Established',
+      description: 'Star Dental Clinic opened its doors on Plot 32A, North Road, Mbale with a mission to provide quality dental care.'
     },
     {
       year: '2021',
-      title: 'Community Outreach',
-      description: 'Launched mobile dental clinics to reach underserved rural communities.'
+      title: 'Team Building & Equipment',
+      description: 'Expanded our team with qualified dentists and invested in modern dental equipment to serve patients better.'
     },
     {
       year: '2022',
-      title: 'Technology Upgrade',
-      description: 'Implemented digital X-ray systems and modern sterilization equipment.'
+      title: 'Service Excellence',
+      description: 'Continued to evolve aesthetically and in terms of equipment, enhancing patient experience and care quality.'
     },
     {
       year: '2023',
-      title: 'Award Recognition',
-      description: 'Received multiple awards for excellence in dental care and community service.'
+      title: 'Community Outreach Programs',
+      description: 'Launched comprehensive dental outreach programs to serve rural communities and promote oral health awareness.'
     },
     {
       year: '2024',
-      title: 'Continued Growth',
-      description: 'Expanding services and planning new locations to serve more communities.'
+      title: 'Digital Presence & Growth',
+      description: 'Established strong online presence and continued expanding services to meet growing community needs.'
+    },
+    {
+      year: '2025',
+      title: 'Modern Web Platform',
+      description: 'Launched comprehensive website for better patient access and streamlined appointment booking system.'
     }
   ];
 

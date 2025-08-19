@@ -7,6 +7,10 @@ import AOS from 'aos';
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
 import WhatsAppFloat from './components/Common/WhatsAppFloat';
+import SEOManager from './components/Common/SEOManager';
+import LocalSEO from './components/Common/LocalSEO';
+import ErrorBoundary from './components/Common/ErrorBoundary';
+import { SkipToContent } from './components/Common/AccessibilityHelpers';
 
 // Pages
 import Home from './pages/Home';
@@ -37,11 +41,15 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider>
-      <Router>
-        <div className="App min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow">
+    <ErrorBoundary>
+      <AuthProvider>
+        <Router>
+          <SkipToContent />
+          <SEOManager />
+          <LocalSEO />
+          <div className="App min-h-screen flex flex-col">
+            <Navbar />
+            <main id="main-content" className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -78,6 +86,7 @@ function App() {
         </div>
       </Router>
     </AuthProvider>
+  </ErrorBoundary>
   );
 }
 

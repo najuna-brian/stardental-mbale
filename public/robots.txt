@@ -1,4 +1,26 @@
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://stardental-mbale.web.app/sitemap.xml
+
+# Allow important pages for dental search
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /contact
+Allow: /booking
+Allow: /testimonials
+Allow: /blog
+
+# Block admin areas
+Disallow: /admin/
+
+# Block private files
+Disallow: /*.json$
+Disallow: /firebase-debug.log
+Disallow: /firebase.json
+Disallow: /.firebase/
+
+# Crawl delay (be respectful)
+Crawl-delay: 1

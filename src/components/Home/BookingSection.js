@@ -155,8 +155,8 @@ const BookingSection = () => {
               <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
                 <p className="text-sm text-red-600">
                   <strong>Emergency?</strong> Call us immediately at{' '}
-                  <a href="tel:+256-XXX-XXXXXX" className="font-semibold underline">
-                    +256-XXX-XXXXXX
+                  <a href="tel:+256779003568" className="font-semibold underline hover:text-red-800 transition-colors">
+                    +256 779 003 568
                   </a>
                 </p>
               </div>

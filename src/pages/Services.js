@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   HeartIcon,
   SparklesIcon,
   AdjustmentsHorizontalIcon,
   SunIcon,
-  CubeIcon,
   FaceSmileIcon
 } from '@heroicons/react/24/outline';
+import AnimatedSection, { StaggeredContainer, HoverCard, MouseFollowElement } from '../components/Common/AnimatedSection';
 
 const Services = () => {
   const services = [
@@ -84,24 +85,6 @@ const Services = () => {
       color: 'primary'
     },
     {
-      id: 'dental-implants',
-      icon: CubeIcon,
-      title: 'Dental Implants',
-      shortDesc: 'Permanent tooth replacement that looks and feels natural',
-      description: 'Replace missing teeth with dental implants - the gold standard in tooth replacement. Our implants provide a permanent solution that looks, feels, and functions like natural teeth.',
-      treatments: [
-        'Single Tooth Implants',
-        'Multiple Tooth Implants',
-        'All-on-4 Implants',
-        'Implant-Supported Dentures',
-        'Bone Grafting',
-        'Sinus Lift Procedures'
-      ],
-      price: 'From UGX 1,200,000',
-      duration: '3-6 months process',
-      color: 'secondary'
-    },
-    {
       id: 'pediatric-dentistry',
       icon: FaceSmileIcon,
       title: 'Pediatric Dentistry',
@@ -165,71 +148,203 @@ const Services = () => {
       {/* Services Grid */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <StaggeredContainer 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+            animation="scaleIn"
+            delay={150}
+          >
             {services.map((service, index) => (
-              <motion.div
-                key={service.id}
-                className={`bg-white rounded-2xl shadow-lg overflow-hidden border-2 ${colorClasses[service.color].border} ${colorClasses[service.color].hover} transition-all duration-300 hover:shadow-2xl`}
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
-              >
-                {/* Header */}
-                <div className={`bg-gradient-to-r ${colorClasses[service.color].bg} p-8 text-white`}>
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center">
-                      <service.icon className="w-8 h-8" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold">{service.title}</h2>
-                      <p className="text-white/90">{service.shortDesc}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8">
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  {/* Treatment List */}
-                  <div className="mb-6">
-                    <h3 className="font-semibold text-gray-800 mb-4">What We Offer:</h3>
-                    <div className="grid grid-cols-1 gap-2">
-                      {service.treatments.map((treatment, i) => (
-                        <div key={i} className="flex items-center space-x-3">
-                          <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${colorClasses[service.color].bg}`}></div>
-                          <span className="text-gray-600">{treatment}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Price & Duration */}
-                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg mb-6">
-                    <div>
-                      <p className="text-sm text-gray-500">Starting From</p>
-                      <p className={`font-bold text-lg ${colorClasses[service.color].text}`}>
-                        {service.price}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm text-gray-500">Duration</p>
-                      <p className="font-semibold text-gray-800">{service.duration}</p>
-                    </div>
-                  </div>
-
-                  {/* CTA Button */}
-                  <a 
-                    href="/booking" 
-                    className={`w-full bg-gradient-to-r ${colorClasses[service.color].bg} text-white py-3 rounded-lg font-semibold text-center block hover:shadow-lg transition-all duration-300 transform hover:scale-105`}
+              <MouseFollowElement key={service.id} strength={0.1}>
+                <HoverCard effect="lift" className="h-full">
+                  <motion.div
+                    className={`bg-white rounded-2xl shadow-lg overflow-hidden border-2 ${colorClasses[service.color].border} ${colorClasses[service.color].hover} transition-all duration-500 hover:shadow-2xl h-full`}
+                    initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 15
+                    }}
+                    whileHover={{ 
+                      scale: 1.02,
+                      transition: { duration: 0.3 }
+                    }}
                   >
-                    Book This Service
-                  </a>
-                </div>
-              </motion.div>
+                    {/* Header */}
+                    <motion.div 
+                      className={`bg-gradient-to-r ${colorClasses[service.color].bg} p-8 text-white relative overflow-hidden`}
+                      whileHover={{
+                        background: `linear-gradient(135deg, ${colorClasses[service.color].bg.split(' ')[1]}, ${colorClasses[service.color].bg.split(' ')[3]})`
+                      }}
+                    >
+                      {/* Animated Background Elements */}
+                      <motion.div
+                        className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full"
+                        animate={{
+                          rotate: [0, 360],
+                          scale: [1, 1.1, 1]
+                        }}
+                        transition={{
+                          duration: 10,
+                          repeat: Infinity,
+                          ease: "linear"
+                        }}
+                      />
+                      <motion.div
+                        className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/5 rounded-full"
+                        animate={{
+                          rotate: [360, 0],
+                          scale: [1, 1.2, 1]
+                        }}
+                        transition={{
+                          duration: 15,
+                          repeat: Infinity,
+                          ease: "linear"
+                        }}
+                      />
+                      
+                      <div className="flex items-center space-x-4 mb-4 relative z-10">
+                        <motion.div 
+                          className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm"
+                          whileHover={{ 
+                            scale: 1.1, 
+                            rotate: 5,
+                            backgroundColor: "rgba(255, 255, 255, 0.3)"
+                          }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <motion.div
+                            whileHover={{ rotate: 15 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <service.icon className="w-8 h-8" />
+                          </motion.div>
+                        </motion.div>
+                        <div>
+                          <motion.h2 
+                            className="text-2xl font-bold"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
+                          >
+                            {service.title}
+                          </motion.h2>
+                          <motion.p 
+                            className="text-white/90"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+                          >
+                            {service.shortDesc}
+                          </motion.p>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Content */}
+                    <div className="p-8">
+                      <motion.p 
+                        className="text-gray-600 mb-6 leading-relaxed"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
+                      >
+                        {service.description}
+                      </motion.p>
+
+                      {/* Treatment List */}
+                      <motion.div 
+                        className="mb-6"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 + 0.5 }}
+                      >
+                        <h3 className="font-semibold text-gray-800 mb-4">What We Offer:</h3>
+                        <div className="grid grid-cols-1 gap-2">
+                          {service.treatments.map((treatment, i) => (
+                            <motion.div 
+                              key={i} 
+                              className="flex items-center space-x-3 group"
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.4, delay: index * 0.1 + 0.6 + i * 0.1 }}
+                              whileHover={{ x: 5 }}
+                            >
+                              <motion.div 
+                                className={`w-2 h-2 rounded-full bg-gradient-to-r ${colorClasses[service.color].bg}`}
+                                whileHover={{ scale: 1.5 }}
+                                transition={{ type: "spring", stiffness: 300 }}
+                              />
+                              <span className="text-gray-600 group-hover:text-gray-800 transition-colors">
+                                {treatment}
+                              </span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+
+                      {/* Price & Duration */}
+                      <motion.div 
+                        className="flex items-center justify-between p-4 bg-gray-50 rounded-lg mb-6 hover:bg-gray-100 transition-colors"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 + 0.7 }}
+                        whileHover={{ scale: 1.02 }}
+                      >
+                        <div>
+                          <p className="text-sm text-gray-500">Starting From</p>
+                          <motion.p 
+                            className={`font-bold text-lg ${colorClasses[service.color].text}`}
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
+                            {service.price}
+                          </motion.p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm text-gray-500">Duration</p>
+                          <p className="font-semibold text-gray-800">{service.duration}</p>
+                        </div>
+                      </motion.div>
+
+                      {/* CTA Button */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 + 0.8 }}
+                      >
+                        <motion.a 
+                          href="/booking" 
+                          className={`w-full bg-gradient-to-r ${colorClasses[service.color].bg} text-white py-3 rounded-lg font-semibold text-center block relative overflow-hidden group`}
+                          whileHover={{ 
+                            scale: 1.05,
+                            boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
+                          }}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <motion.div
+                            className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100"
+                            initial={false}
+                            transition={{ duration: 0.3 }}
+                          />
+                          <span className="relative z-10">Book This Service</span>
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                            initial={{ x: "-100%" }}
+                            whileHover={{ x: "100%" }}
+                            transition={{ duration: 0.8 }}
+                          />
+                        </motion.a>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                </HoverCard>
+              </MouseFollowElement>
             ))}
-          </div>
+          </StaggeredContainer>
         </div>
       </section>
 
@@ -408,11 +523,16 @@ const Services = () => {
               achieve the healthy, beautiful smile you deserve.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/booking" className="btn-secondary">
+              <Link to="/booking" className="btn-secondary">
                 Book Consultation
-              </a>
-              <a href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-primary-500">
-                Contact Us
+              </Link>
+              <a 
+                href="https://wa.me/256779003568?text=Hello! I'd like to inquire about your dental services." 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn-outline border-white text-white hover:bg-white hover:text-primary-500"
+              >
+                WhatsApp Us
               </a>
             </div>
           </motion.div>

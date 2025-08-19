@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  
+  <!-- Homepage - Highest priority -->
+  <url>
+    <loc>https://stardental-mbale.web.app/</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://stardental-mbale.web.app/images/star-dental-logo.jpeg</image:loc>
+      <image:caption>Star Dental Clinic Mbale - Best Dentist Near Me</image:caption>
+      <image:title>Star Dental Clinic Logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://stardental-mbale.web.app/images/clinic/clinical-room-1.JPG</image:loc>
+      <image:caption>Modern Dental Clinic Interior in Mbale</image:caption>
+      <image:title>Star Dental Clinic Interior</image:title>
+    </image:image>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://stardental-mbale.web.app/about</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://stardental-mbale.web.app/images/team/dr-naigaga.jpeg</image:loc>
+      <image:caption>Dr. Naigaga - Professional Dentist at Star Dental Clinic Mbale</image:caption>
+      <image:title>Dr. Naigaga - Best Dentist in Mbale</image:title>
+    </image:image>
+  </url>
+
+  <!-- Services Page - High priority for search -->
+  <url>
+    <loc>https://stardental-mbale.web.app/services</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://stardental-mbale.web.app/images/services/teeth-cleaning.jpg</image:loc>
+      <image:caption>Professional Teeth Cleaning Services in Mbale</image:caption>
+      <image:title>Teeth Cleaning - Star Dental Clinic</image:title>
+    </image:image>
+  </url>
+
+  <!-- Contact Page - Important for local SEO -->
+  <url>
+    <loc>https://stardental-mbale.web.app/contact</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Booking Page - High conversion priority -->
+  <url>
+    <loc>https://stardental-mbale.web.app/booking</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Testimonials Page -->
+  <url>
+    <loc>https://stardental-mbale.web.app/testimonials</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://stardental-mbale.web.app/images/testimonials/patient-1.jpg</image:loc>
+      <image:caption>Happy Patient Testimonial - Star Dental Clinic Mbale</image:caption>
+      <image:title>Patient Review - Best Dental Care</image:title>
+    </image:image>
+  </url>
+
+  <!-- Blog Page -->
+  <url>
+    <loc>https://stardental-mbale.web.app/blog</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://stardental-mbale.web.app/privacy-policy</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Blog Posts (Top dental topics for SEO) -->
+  <url>
+    <loc>https://stardental-mbale.web.app/blog/importance-of-regular-dental-checkups</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Star Dental Clinic Blog</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-19</news:publication_date>
+      <news:title>The Importance of Regular Dental Checkups</news:title>
+      <news:keywords>dental checkup, oral health, preventive dentistry, dentist Mbale</news:keywords>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://stardental-mbale.web.app/blog/how-to-prevent-tooth-decay</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Star Dental Clinic Blog</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-19</news:publication_date>
+      <news:title>How to Prevent Tooth Decay: A Complete Guide</news:title>
+      <news:keywords>tooth decay, cavity prevention, oral hygiene, dental care tips</news:keywords>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://stardental-mbale.web.app/blog/teeth-whitening-options</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Star Dental Clinic Blog</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-19</news:publication_date>
+      <news:title>Professional Teeth Whitening vs Home Remedies</news:title>
+      <news:keywords>teeth whitening, cosmetic dentistry, dental aesthetics, white teeth</news:keywords>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://stardental-mbale.web.app/blog/emergency-dental-care</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Star Dental Clinic Blog</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-19</news:publication_date>
+      <news:title>When to Seek Emergency Dental Care</news:title>
+      <news:keywords>emergency dentist, tooth pain, dental emergency, urgent dental care</news:keywords>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://stardental-mbale.web.app/blog/oral-hygiene-for-children</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <news:news>
+      <news:publication>
+        <news:name>Star Dental Clinic Blog</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-19</news:publication_date>
+      <news:title>Teaching Your Children Good Oral Hygiene Habits</news:title>
+      <news:keywords>pediatric dentistry, children dental care, kids oral hygiene, family dentist</news:keywords>
+    </news:news>
+  </url>
+
+</urlset>
