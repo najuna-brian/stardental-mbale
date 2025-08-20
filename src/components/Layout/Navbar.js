@@ -54,37 +54,48 @@ const Navbar = () => {
       className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled 
           ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-          : 'bg-transparent'
+          : 'bg-white/90 backdrop-blur-sm shadow-sm lg:bg-transparent lg:shadow-none'
       }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <div className="container-custom">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-4 px-2 sm:px-0">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex-shrink-0"
           >
             <Link to="/" className="flex items-center space-x-2 group">
               <motion.img 
                 src="/images/star-dental-logo.jpeg" 
                 alt="Star Dental Clinic Logo"
-                className="w-10 h-10 rounded-full object-cover"
+                className="w-12 h-12 lg:w-10 lg:h-10 rounded-full object-cover shadow-md"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               />
               <div>
                 <motion.h1 
-                  className="font-poppins font-bold text-xl text-gray-800 group-hover:text-primary-500 transition-colors"
+                  className={`font-poppins font-bold text-xl lg:text-xl transition-colors ${
+                    isScrolled 
+                      ? 'text-gray-800' 
+                      : 'text-gray-800 lg:text-white'
+                  } group-hover:text-primary-500`}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   Star Dental
                 </motion.h1>
-                <p className="text-xs text-gray-600">Clinic Mbale</p>
+                <p className={`text-xs transition-colors ${
+                  isScrolled 
+                    ? 'text-gray-600' 
+                    : 'text-gray-600 lg:text-gray-300'
+                }`}>
+                  Clinic Mbale
+                </p>
               </div>
             </Link>
           </motion.div>
@@ -173,7 +184,11 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-primary-500 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className={`lg:hidden p-3 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 flex-shrink-0 ${
+              isScrolled 
+                ? 'text-gray-700 hover:text-primary-500 hover:bg-primary-50' 
+                : 'text-gray-800 hover:text-primary-500 bg-white/80 hover:bg-white shadow-md'
+            }`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
@@ -182,6 +197,7 @@ const Navbar = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
+            style={{ minWidth: '48px', minHeight: '48px' }}
           >
             <AnimatePresence mode="wait">
               {isOpen ? (
@@ -192,7 +208,7 @@ const Navbar = () => {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <XMarkIcon className="w-6 h-6" />
+                  <XMarkIcon className="w-7 h-7" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -202,7 +218,7 @@ const Navbar = () => {
                   exit={{ rotate: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Bars3Icon className="w-6 h-6" />
+                  <Bars3Icon className="w-7 h-7" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -214,70 +230,247 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
+            {/* Full Screen Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-              onClick={() => setIsOpen(false)}
-            />
-            
-            {/* Menu */}
-            <motion.div
-              ref={mobileMenuRef}
-              initial={{ opacity: 0, x: '100%' }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 120 }}
-              className="lg:hidden fixed top-0 right-0 bottom-0 w-80 bg-white shadow-2xl z-50 overflow-y-auto"
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="lg:hidden fixed inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-600 z-50"
+              style={{ zIndex: 9999 }}
             >
-              <div className="p-6">
-                {/* Close button */}
-                <div className="flex justify-end mb-8">
-                  <button
+              {/* Animated Background Elements */}
+              <div className="absolute inset-0 overflow-hidden">
+                {/* Floating circles */}
+                <motion.div
+                  className="absolute -top-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-xl"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                />
+                <motion.div
+                  className="absolute top-1/4 -right-20 w-60 h-60 bg-secondary-400/20 rounded-full blur-2xl"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    rotate: [360, 180, 0],
+                  }}
+                  transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                />
+                <motion.div
+                  className="absolute bottom-10 left-1/4 w-32 h-32 bg-white/15 rounded-full blur-xl"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    y: [0, -20, 0],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </div>
+
+              {/* Menu Content */}
+              <motion.div
+                className="relative z-10 h-full flex flex-col"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                {/* Header with Logo and Close Button */}
+                <motion.div 
+                  className="flex justify-between items-center p-6 pt-8"
+                  initial={{ y: -50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <div className="flex items-center space-x-3">
+                    <motion.img 
+                      src="/images/star-dental-logo.jpeg" 
+                      alt="Star Dental Clinic"
+                      className="w-12 h-12 rounded-full object-cover shadow-lg"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                    />
+                    <div>
+                      <h2 className="text-white font-bold text-xl">Star Dental</h2>
+                      <p className="text-white/80 text-sm">Clinic Mbale</p>
+                    </div>
+                  </div>
+                  
+                  <motion.button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                    aria-label="Close menu"
+                    className="p-3 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300"
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    whileTap={{ scale: 0.9 }}
                   >
                     <XMarkIcon className="w-6 h-6" />
-                  </button>
+                  </motion.button>
+                </motion.div>
+
+                {/* Navigation Links */}
+                <div className="flex-1 flex flex-col justify-center px-6">
+                  <motion.nav className="space-y-2">
+                    {navLinks.map((link, index) => (
+                      <motion.div
+                        key={link.name}
+                        initial={{ x: -100, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ 
+                          duration: 0.6, 
+                          delay: 0.4 + index * 0.1,
+                          type: "spring",
+                          stiffness: 100
+                        }}
+                      >
+                        <Link
+                          to={link.path}
+                          className={`block group relative overflow-hidden`}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <motion.div
+                            className="flex items-center justify-between py-4 px-6 rounded-2xl transition-all duration-300"
+                            whileHover={{ 
+                              backgroundColor: "rgba(255, 255, 255, 0.1)",
+                              scale: 1.02
+                            }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <div className="flex items-center space-x-4">
+                              <motion.div
+                                className="w-2 h-2 bg-white rounded-full opacity-60"
+                                whileHover={{ 
+                                  scale: 1.5,
+                                  backgroundColor: "#ffc107"
+                                }}
+                                transition={{ type: "spring", stiffness: 300 }}
+                              />
+                              <span className={`text-2xl font-semibold transition-all duration-300 ${
+                                location.pathname === link.path
+                                  ? 'text-secondary-400'
+                                  : 'text-white group-hover:text-secondary-400'
+                              }`}>
+                                {link.name}
+                              </span>
+                            </div>
+                            
+                            <motion.div
+                              className="opacity-0 group-hover:opacity-100 transition-all duration-300"
+                              initial={{ x: -20 }}
+                              whileHover={{ x: 0 }}
+                            >
+                              <svg 
+                                className="w-6 h-6 text-secondary-400" 
+                                fill="none" 
+                                stroke="currentColor" 
+                                viewBox="0 0 24 24"
+                              >
+                                <path 
+                                  strokeLinecap="round" 
+                                  strokeLinejoin="round" 
+                                  strokeWidth={2} 
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            </motion.div>
+                          </motion.div>
+                          
+                          {/* Active indicator */}
+                          {location.pathname === link.path && (
+                            <motion.div
+                              className="absolute left-6 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-secondary-400 rounded-full"
+                              layoutId="activeIndicator"
+                              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            />
+                          )}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </motion.nav>
                 </div>
-                
-                {/* Navigation links */}
-                <nav className="space-y-6">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.name}
-                      to={link.path}
-                      className={`block text-lg font-medium transition-colors duration-300 ${
-                        location.pathname === link.path
-                          ? 'text-primary-500'
-                          : 'text-gray-700 hover:text-primary-500'
-                      }`}
+
+                {/* Contact Info & CTA */}
+                <motion.div 
+                  className="p-6 space-y-6"
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                  {/* Contact Info */}
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 space-y-4">
+                    <h3 className="text-white font-semibold text-lg mb-4">Get In Touch</h3>
+                    
+                    <motion.a 
+                      href="tel:+256779003568"
+                      className="flex items-center space-x-3 text-white/90 hover:text-secondary-400 transition-colors"
+                      whileHover={{ x: 5 }}
                     >
-                      {link.name}
-                    </Link>
-                  ))}
-                </nav>
-                
-                {/* CTA buttons */}
-                <div className="pt-8 mt-8 border-t space-y-4">
-                  <a 
-                    href="tel:+256779003568" 
-                    className="flex items-center justify-center space-x-2 w-full py-3 px-4 border border-primary-500 text-primary-500 rounded-lg hover:bg-primary-50 transition-colors"
-                  >
-                    <PhoneIcon className="w-5 h-5" />
-                    <span className="font-medium">Call Now</span>
-                  </a>
-                  <Link 
-                    to="/booking" 
-                    className="block w-full text-center py-3 px-4 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors font-medium"
-                  >
-                    Book Appointment
-                  </Link>
-                </div>
-              </div>
+                      <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <PhoneIcon className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="font-medium">Call Now</p>
+                        <p className="text-sm opacity-80">+256 779 003 568</p>
+                      </div>
+                    </motion.a>
+                    
+                    <motion.div 
+                      className="flex items-center space-x-3 text-white/90"
+                      whileHover={{ x: 5 }}
+                    >
+                      <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-medium">Visit Us</p>
+                        <p className="text-sm opacity-80">Plot 32A, North Road, Mbale</p>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* CTA Buttons */}
+                  <div className="space-y-3">
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Link 
+                        to="/booking" 
+                        className="block w-full bg-secondary-500 hover:bg-secondary-600 text-white text-center py-4 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Book Appointment
+                      </Link>
+                    </motion.div>
+                    
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <a 
+                        href="https://wa.me/256779003568"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full border-2 border-white/30 text-white text-center py-4 rounded-2xl font-semibold text-lg hover:bg-white/10 transition-all duration-300"
+                      >
+                        WhatsApp Us
+                      </a>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </motion.div>
             </motion.div>
           </>
         )}

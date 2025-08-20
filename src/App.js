@@ -47,9 +47,9 @@ function App() {
           <SkipToContent />
           <SEOManager />
           <LocalSEO />
-          <div className="App min-h-screen flex flex-col">
+          <div className="App min-h-screen flex flex-col w-full overflow-x-hidden">
             <Navbar />
-            <main id="main-content" className="flex-grow">
+            <main id="main-content" className="flex-grow w-full">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />

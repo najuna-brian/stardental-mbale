@@ -12,31 +12,29 @@ import {
 const About = () => {
   const team = [
     {
-      name: 'Dr. Charity Mutuwa',
+      name: 'Dentist. Charity Mutuwa',
       title: 'Licensed Dentist',
       specialization: 'General & Cosmetic Dentistry',
       experience: '4+ years',
       education: 'DDS - Fully Licensed',
-      bio: 'Dr. Mutuwa is a fully licensed dentist with extensive experience in general and cosmetic dentistry procedures.',
-      image: '/images/staff/staff-demonstration.jpeg'
+      bio: 'Dentist. Charity is a fully licensed dentist with extensive experience in general and cosmetic dentistry procedures.',
+      image: '/images/staff/Charity.jpeg'
     },
     {
       name: 'Ms. Lydia Nakayenze',
       title: 'Chair Side Assistant',
       specialization: 'Patient Care & Assistance',
-      experience: '3+ years',
-      education: 'Certified Dental Assistant',
+      experience: '6+ years',
       bio: 'Ms. Nakayenze provides excellent patient care and assists with all dental procedures, ensuring patient comfort.',
-      image: '/images/staff/lady-staff.jpeg'
+      image: '/images/staff/Lydia.jpeg'
     },
     {
       name: 'Dr. Avaga Leonard',
       title: 'Senior Dentist',
       specialization: 'Clinical & Community Dentistry',
       experience: '30+ years',
-      education: 'DDS, Community Dentistry Specialist',
       bio: 'Dr. Avaga brings over three decades of experience in both clinical dentistry and community dental health programs.',
-      image: '/images/staff/staff-operating.jpeg'
+      image: '/images/staff/avaga.jpeg'
     }
   ];
 

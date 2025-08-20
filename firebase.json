@@ -1,71 +1,26 @@
 {
-  "hosting": [
-    {
-      "target": "stardentalclinic-mbale",
-      "public": "build",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ],
-      "headers": [
-        {
-          "source": "**/*.@(jpg|jpeg|gif|png|svg|webp)",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "max-age=31536000"
-            }
-          ]
-        },
-        {
-          "source": "**/*.@(js|css)",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "max-age=31536000"
-            }
-          ]
-        },
-        {
-          "source": "/sitemap.xml",
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "application/xml"
-            }
-          ]
-        },
-        {
-          "source": "/blog-sitemap.xml",
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "application/xml"
-            }
-          ]
-        },
-        {
-          "source": "/robots.txt",
-          "headers": [
-            {
-              "key": "Content-Type",
-              "value": "text/plain"
-            }
-          ]
-        }
-      ],
-      "redirects": [
-        {
-          "source": "/old-site/**",
-          "destination": "https://stardentalclinic-mbale.com/**",
-          "type": 301
-        }
-      ]
-    }
-  ],
+  "hosting": {
+    "site": "stardental-mbale",
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|svg|webp)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
+      }
+    ]
+  },
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"

@@ -6,7 +6,7 @@ import { TypingText, CountUp, FloatingElement, MouseFollowElement } from '../Com
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-16 lg:pt-0">
       {/* Background Image with Parallax Effect */}
       <motion.div 
         className="absolute inset-0 z-0"
@@ -36,7 +36,7 @@ const Hero = () => {
       </FloatingElement>
       
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
+      <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto mt-8 md:mt-4 lg:mt-0">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,7 +44,7 @@ const Hero = () => {
         >
           {/* Main Headline with Typing Effect */}
           <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-bold font-poppins mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold font-poppins mb-6 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -72,7 +72,7 @@ const Hero = () => {
           </motion.h1>
 
           <motion.p 
-            className="text-xl md:text-2xl mb-8 text-gray-100 leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl mb-8 text-gray-100 leading-relaxed px-2"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
