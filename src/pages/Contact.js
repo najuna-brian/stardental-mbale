@@ -105,33 +105,6 @@ const Contact = () => {
     }
   ];
 
-  const faqs = [
-    {
-      question: 'Do you accept insurance?',
-      answer: 'Yes, we accept most major insurance plans. Please contact us to verify your specific coverage.'
-    },
-    {
-      question: 'What should I bring to my first appointment?',
-      answer: 'Please bring a valid ID, insurance cards, list of current medications, and any previous dental records.'
-    },
-    {
-      question: 'Do you offer emergency dental services?',
-      answer: 'Yes, we provide 24/7 emergency dental services. Call our emergency line for immediate assistance.'
-    },
-    {
-      question: 'How often should I visit the dentist?',
-      answer: 'We recommend regular checkups every 6 months for optimal oral health, though frequency may vary based on individual needs.'
-    },
-    {
-      question: 'Do you treat children?',
-      answer: 'Absolutely! We have specialized pediatric dental services and create a comfortable environment for children of all ages.'
-    },
-    {
-      question: 'What payment methods do you accept?',
-      answer: 'We accept cash, MTN Mobile Money, Airtel Money, Standard Chartered Bank transfers, and major credit cards. We also offer flexible payment plans for extensive treatments.'
-    }
-  ];
-
   const colorClasses = {
     primary: 'from-primary-500 to-primary-600',
     secondary: 'from-secondary-500 to-secondary-600',
@@ -141,7 +114,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-500 to-primary-600 text-white py-20">
+  <section className="bg-primary-50 text-gray-900 py-20">
         <div className="container-custom">
           <motion.div 
             className="text-center max-w-4xl mx-auto"
@@ -165,7 +138,7 @@ const Contact = () => {
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow"
+                className="surface p-8 text-center hover:shadow-md transition-shadow"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
@@ -336,7 +309,7 @@ const Contact = () => {
               <div className="bg-gray-200 rounded-2xl overflow-hidden">
                 <div className="relative">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7491234567890!2d34.1776!3d1.0861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMDUnMTAuMCJOIDM0wrAxMCczOS40IkU!5e0!3m2!1sen!2sug!4v1234567890123!5m2!1sen!2sug"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.1169519820232!2d34.17596997410492!3d1.074336962401298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1778b70dd71e818f%3A0x242a615a9b9e3af9!2sStar%20Dental%20Clinic!5e0!3m2!1sen!2sug!4v1756057807606!5m2!1sen!2sug"
                     width="100%"
                     height="256"
                     style={{ border: 0 }}
@@ -420,53 +393,6 @@ const Contact = () => {
                 </a>
               </div>
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <motion.div 
-            className="text-center mb-16"
-            data-aos="fade-up"
-          >
-            <h2 className="text-4xl font-bold font-poppins text-gray-800 mb-4">
-              Frequently Asked <span className="text-primary-500">Questions</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Find answers to common questions about our services and policies.
-            </p>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white rounded-xl shadow-lg p-8"
-                  data-aos="fade-up"
-                  data-aos-delay={index * 100}
-                >
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">{faq.question}</h3>
-                  <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-gray-600 mb-6">Can't find what you're looking for?</p>
-            <a 
-              href="#contact-form"
-              className="btn-primary"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('form').scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Ask Your Question
-            </a>
           </div>
         </div>
       </section>

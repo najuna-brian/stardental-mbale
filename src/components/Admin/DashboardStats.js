@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
-  UsersIcon,
   CalendarDaysIcon,
   DocumentTextIcon,
-  CurrencyDollarIcon,
   ArrowUpIcon,
-  ArrowDownIcon,
   UserGroupIcon,
   EyeIcon
 } from '@heroicons/react/24/outline';

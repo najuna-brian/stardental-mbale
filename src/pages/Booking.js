@@ -21,14 +21,14 @@ const Booking = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const services = [
-    { id: 'general-checkup', name: 'General Checkup', duration: '30 min', price: 'UGX 50,000' },
-    { id: 'teeth-cleaning', name: 'Teeth Cleaning', duration: '45 min', price: 'UGX 80,000' },
-    { id: 'teeth-whitening', name: 'Teeth Whitening', duration: '60 min', price: 'UGX 150,000' },
-    { id: 'filling', name: 'Dental Filling', duration: '45 min', price: 'UGX 100,000' },
-    { id: 'root-canal', name: 'Root Canal Treatment', duration: '90 min', price: 'UGX 300,000' },
+    { id: 'general-checkup', name: 'General Checkup', duration: '30 min', price: 'UGX 15,000' },
+    { id: 'teeth-cleaning', name: 'Teeth Cleaning', duration: '45 min', price: 'From UGX 100,000' },
+    { id: 'teeth-whitening', name: 'Teeth Whitening', duration: '60 min', price: 'UGX 700,000' },
+    { id: 'filling', name: 'Dental Filling', duration: '45 min', price: 'From UGX 50,000' },
+    { id: 'root-canal', name: 'Root Canal Treatment', duration: '90 min', price: 'Variable' },
     { id: 'extraction', name: 'Tooth Extraction', duration: '30 min', price: 'UGX 120,000' },
-    { id: 'cosmetic-consultation', name: 'Cosmetic Consultation', duration: '30 min', price: 'UGX 75,000' },
-    { id: 'orthodontic-consultation', name: 'Orthodontic Consultation', duration: '45 min', price: 'UGX 100,000' },
+    { id: 'cosmetic-consultation', name: 'Cosmetic Consultation', duration: '30 min', price: 'UGX 15,000' },
+    { id: 'orthodontic-consultation', name: 'Orthodontic Consultation', duration: '45 min', price: 'UGX 15,000' },
     { id: 'emergency', name: 'Emergency Visit', duration: '30 min', price: 'Variable' }
   ];
 
@@ -41,23 +41,7 @@ const Booking = () => {
   // Get today's date in YYYY-MM-DD format
   const today = new Date().toISOString().split('T')[0];
 
-  // Get next 30 days excluding Sundays
-  const getAvailableDates = () => {
-    const dates = [];
-    const current = new Date();
-    
-    for (let i = 0; i < 45; i++) {
-      const date = new Date(current);
-      date.setDate(current.getDate() + i);
-      
-      // Skip Sundays (0) unless it's an emergency
-      if (date.getDay() !== 0 || selectedService === 'emergency') {
-        dates.push(date.toISOString().split('T')[0]);
-      }
-    }
-    
-    return dates.slice(0, 30);
-  };
+  // Helper removed (unused): available dates are derived directly in UI components when needed.
 
   const onSubmit = async (data) => {
     if (!selectedService || !selectedDate || !selectedTime) {
@@ -98,7 +82,7 @@ const Booking = () => {
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       {/* Header */}
-      <section className="bg-gradient-to-r from-primary-500 to-primary-600 text-white py-16">
+  <section className="bg-primary-50 text-gray-900 py-16">
         <div className="container-custom">
           <motion.div 
             className="text-center"
@@ -424,11 +408,11 @@ const Booking = () => {
             </h3>
             <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
               <a 
-                href="tel:+256-XXX-XXXXXX" 
+                href="tel:+256779003568" 
                 className="flex items-center space-x-2 text-primary-600 hover:text-primary-700"
               >
                 <PhoneIcon className="w-5 h-5" />
-                <span>Call: +256-XXX-XXXXXX</span>
+                <span>Call: +256 779 003 568</span>
               </a>
               <a 
                 href="mailto:appointments@stardentalmbale.com" 
@@ -439,7 +423,7 @@ const Booking = () => {
               </a>
             </div>
             <p className="text-center text-gray-600 mt-4 text-sm">
-              For emergencies outside business hours, call our emergency line: +256-XXX-XXXXXX
+              For emergencies outside business hours, call our emergency line: +256 779 003 568
             </p>
           </motion.div>
         </div>

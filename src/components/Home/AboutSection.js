@@ -48,12 +48,12 @@ const AboutSection = () => {
           >
             <div>
               <h2 className="text-4xl font-bold font-poppins text-gray-800 mb-4">
-                Leading Dental Care in <span className="text-primary-500">Eastern Uganda</span>
+                Quality Dental Care in <span className="text-primary-500">Eastern Uganda</span>
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                At Star Dental Clinic, we're committed to transforming smiles and enhancing lives 
-                through innovation, education, and community-driven care. Our mission is to provide 
-                high-quality, accessible, and affordable dental care to everyone.
+                At Star Dental Clinic, we are committed to providing quality oral healthcare 
+                through professional care, community service, and patient education. Our focus is on 
+                accessible and affordable dental care for everyone in our community.
               </p>
             </div>
 
@@ -79,8 +79,8 @@ const AboutSection = () => {
                 <div>
                   <h3 className="font-semibold text-xl text-gray-800 mb-2">Our Vision</h3>
                   <p className="text-gray-600">
-                    To be the leading dental clinic in Eastern Uganda and beyond, known for transforming 
-                    smiles and enhancing lives through innovation, education, and community-driven care.
+                    To be recognized as a trusted dental clinic in Eastern Uganda, known for 
+                    quality patient care, professional service, and community health improvement.
                   </p>
                 </div>
               </div>
@@ -92,8 +92,8 @@ const AboutSection = () => {
                 <div>
                   <h3 className="font-semibold text-xl text-gray-800 mb-2">Our Goal</h3>
                   <p className="text-gray-600">
-                    Expand reach via outreach clinics, foster oral health conservation, 
-                    and ensure everyone gets a good smile.
+                    Expand reach through outreach clinics, promote oral health education, 
+                    and ensure everyone has access to quality dental care.
                   </p>
                 </div>
               </div>

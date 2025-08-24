@@ -41,7 +41,7 @@ const About = () => {
   const achievements = [
     {
       icon: TrophyIcon,
-      title: 'Best Dental Clinic Award',
+      title: 'Healthcare Service Recognition',
       description: 'Eastern Uganda Healthcare Excellence Awards 2023',
       year: '2023'
     },
@@ -54,7 +54,7 @@ const About = () => {
     {
       icon: UserGroupIcon,
       title: 'Community Service Award',
-      description: 'Outstanding contribution to rural dental health outreach',
+      description: 'Recognized contribution to rural dental health outreach',
       year: '2023'
     }
   ];
@@ -95,7 +95,7 @@ const About = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-r from-primary-500 to-primary-600 text-white">
+  <section className="relative py-24 bg-primary-50 text-gray-900">
         <div className="container-custom">
           <motion.div 
             className="text-center max-w-4xl mx-auto"
@@ -105,8 +105,8 @@ const About = () => {
               About <span className="text-secondary-400">Star Dental Clinic</span>
             </h1>
             <p className="text-xl text-primary-100 leading-relaxed">
-              Transforming smiles and enhancing lives through innovation, education, 
-              and community-driven dental care in Eastern Uganda and beyond.
+              Providing quality dental healthcare and promoting oral health education 
+              for our community in Eastern Uganda and surrounding areas.
             </p>
           </motion.div>
         </div>
@@ -126,8 +126,8 @@ const About = () => {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
               <p className="text-gray-600 leading-relaxed">
-                To provide high quality, accessible, affordable dental care in Eastern Uganda and beyond, 
-                focusing on prevention, conservation, and innovative treatments that improve lives.
+                To provide quality, accessible, affordable dental care in Eastern Uganda, 
+                focusing on prevention, patient education, and treatments that improve oral health.
               </p>
             </motion.div>
 
@@ -141,8 +141,8 @@ const About = () => {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Vision</h3>
               <p className="text-gray-600 leading-relaxed">
-                To be the leading dental clinic in Eastern Uganda and beyond, known for transforming 
-                smiles and enhancing lives through innovation, education, and community-driven care.
+                To be recognized as a trusted dental clinic in Eastern Uganda, known for 
+                quality patient care, professional service, and community health improvement.
               </p>
             </motion.div>
 
@@ -156,8 +156,8 @@ const About = () => {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Goal</h3>
               <p className="text-gray-600 leading-relaxed">
-                To expand our reach through outreach clinics, foster oral health conservation, 
-                and ensure that everyone in our community gets access to a good smile.
+                To expand our reach through outreach clinics, promote oral health education, 
+                and ensure that everyone in our community has access to quality dental care.
               </p>
             </motion.div>
           </div>
@@ -175,7 +175,7 @@ const About = () => {
               Our <span className="text-primary-500">Journey</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              From humble beginnings to becoming a leading dental clinic in Eastern Uganda, 
+              From establishment in 2020 to becoming a trusted dental clinic in Eastern Uganda, 
               here's how our story has unfolded over the years.
             </p>
           </motion.div>
@@ -318,12 +318,11 @@ const About = () => {
             data-aos="fade-up"
           >
             <h2 className="text-4xl font-bold font-poppins text-gray-800 mb-6">
-              Ready to Experience the <span className="text-primary-500">Star Dental</span> Difference?
+              Ready to Experience <span className="text-primary-500">Quality Dental Care</span>?
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Join hundreds of satisfied patients who have trusted us with their smiles. 
-              Schedule your consultation today and discover why we're the leading choice 
-              for dental care in Eastern Uganda.
+              Join our growing community of satisfied patients who trust us with their dental care. 
+              Schedule your consultation today and discover our commitment to your oral health.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/booking" className="btn-primary">

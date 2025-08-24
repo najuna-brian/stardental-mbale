@@ -8,7 +8,7 @@ import {
   SunIcon,
   FaceSmileIcon
 } from '@heroicons/react/24/outline';
-import AnimatedSection, { StaggeredContainer, HoverCard, MouseFollowElement } from '../components/Common/AnimatedSection';
+import { StaggeredContainer, HoverCard, MouseFollowElement } from '../components/Common/AnimatedSection';
 
 const Services = () => {
   const services = [
@@ -106,29 +106,32 @@ const Services = () => {
 
   const colorClasses = {
     primary: {
-      bg: 'from-primary-500 to-primary-600',
-      text: 'text-primary-600',
-      border: 'border-primary-200',
-      hover: 'hover:border-primary-300'
+  bg: 'from-primary-50 to-primary-100',
+  text: 'text-primary-700',
+  border: 'border-primary-200',
+  hover: 'hover:border-primary-300',
+  dot: 'bg-primary-400'
     },
     secondary: {
-      bg: 'from-secondary-500 to-secondary-600',
-      text: 'text-secondary-600',
-      border: 'border-secondary-200',
-      hover: 'hover:border-secondary-300'
+  bg: 'from-secondary-50 to-secondary-100',
+  text: 'text-secondary-700',
+  border: 'border-secondary-200',
+  hover: 'hover:border-secondary-300',
+  dot: 'bg-secondary-400'
     },
     accent: {
-      bg: 'from-accent-500 to-accent-600',
-      text: 'text-accent-600',
-      border: 'border-accent-200',
-      hover: 'hover:border-accent-300'
+  bg: 'from-accent-50 to-accent-100',
+  text: 'text-accent-700',
+  border: 'border-accent-200',
+  hover: 'hover:border-accent-300',
+  dot: 'bg-accent-400'
     }
   };
 
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-500 to-primary-600 text-white py-20">
+  <section className="bg-primary-50 text-gray-900 py-20">
         <div className="container-custom">
           <motion.div 
             className="text-center max-w-4xl mx-auto"
@@ -174,44 +177,14 @@ const Services = () => {
                   >
                     {/* Header */}
                     <motion.div 
-                      className={`bg-gradient-to-r ${colorClasses[service.color].bg} p-8 text-white relative overflow-hidden`}
-                      whileHover={{
-                        background: `linear-gradient(135deg, ${colorClasses[service.color].bg.split(' ')[1]}, ${colorClasses[service.color].bg.split(' ')[3]})`
-                      }}
+                      className={`bg-gradient-to-r ${colorClasses[service.color].bg} p-8 text-gray-800 relative overflow-hidden`}
                     >
-                      {/* Animated Background Elements */}
-                      <motion.div
-                        className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full"
-                        animate={{
-                          rotate: [0, 360],
-                          scale: [1, 1.1, 1]
-                        }}
-                        transition={{
-                          duration: 10,
-                          repeat: Infinity,
-                          ease: "linear"
-                        }}
-                      />
-                      <motion.div
-                        className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/5 rounded-full"
-                        animate={{
-                          rotate: [360, 0],
-                          scale: [1, 1.2, 1]
-                        }}
-                        transition={{
-                          duration: 15,
-                          repeat: Infinity,
-                          ease: "linear"
-                        }}
-                      />
-                      
                       <div className="flex items-center space-x-4 mb-4 relative z-10">
                         <motion.div 
-                          className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm"
+                          className="w-16 h-16 bg-white rounded-xl flex items-center justify-center border border-gray-200"
                           whileHover={{ 
                             scale: 1.1, 
-                            rotate: 5,
-                            backgroundColor: "rgba(255, 255, 255, 0.3)"
+                            rotate: 5
                           }}
                           transition={{ type: "spring", stiffness: 300 }}
                         >
@@ -232,7 +205,7 @@ const Services = () => {
                             {service.title}
                           </motion.h2>
                           <motion.p 
-                            className="text-white/90"
+                            className="text-gray-600"
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
@@ -273,7 +246,7 @@ const Services = () => {
                               whileHover={{ x: 5 }}
                             >
                               <motion.div 
-                                className={`w-2 h-2 rounded-full bg-gradient-to-r ${colorClasses[service.color].bg}`}
+                                className={`w-2 h-2 rounded-full ${colorClasses[service.color].dot}`}
                                 whileHover={{ scale: 1.5 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                               />
@@ -317,26 +290,12 @@ const Services = () => {
                       >
                         <motion.a 
                           href="/booking" 
-                          className={`w-full bg-gradient-to-r ${colorClasses[service.color].bg} text-white py-3 rounded-lg font-semibold text-center block relative overflow-hidden group`}
-                          whileHover={{ 
-                            scale: 1.05,
-                            boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
-                          }}
+                          className="w-full btn-primary text-center block"
+                          whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
                           transition={{ type: "spring", stiffness: 300 }}
                         >
-                          <motion.div
-                            className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100"
-                            initial={false}
-                            transition={{ duration: 0.3 }}
-                          />
-                          <span className="relative z-10">Book This Service</span>
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                            initial={{ x: "-100%" }}
-                            whileHover={{ x: "100%" }}
-                            transition={{ duration: 0.8 }}
-                          />
+                          Book This Service
                         </motion.a>
                       </motion.div>
                     </div>
@@ -356,10 +315,10 @@ const Services = () => {
             data-aos="fade-up"
           >
             <h2 className="text-4xl font-bold font-poppins text-gray-800 mb-4">
-              Amazing <span className="text-primary-500">Transformations</span>
+              Quality <span className="text-primary-500">Treatment Results</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              See the incredible results our patients have achieved with our dental services.
+              See the positive results our patients have achieved with our dental services.
             </p>
           </motion.div>
 
@@ -492,10 +451,10 @@ const Services = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="tel:+256-XXX-XXXXXX" 
+                href="tel:+256779003568" 
                 className="bg-red-600 hover:bg-red-700 text-white font-semibold py-4 px-8 rounded-lg transition-colors inline-flex items-center justify-center space-x-2"
               >
-                <span>Emergency: +256-XXX-XXXXXX</span>
+                <span>Emergency: +256 779 003 568</span>
               </a>
               <a 
                 href="/booking" 
@@ -516,7 +475,7 @@ const Services = () => {
             data-aos="fade-up"
           >
             <h2 className="text-4xl font-bold font-poppins mb-6">
-              Ready to Transform Your <span className="text-secondary-400">Smile?</span>
+              Ready to Improve Your <span className="text-secondary-400">Oral Health?</span>
             </h2>
             <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
               Schedule a consultation today and discover how our expert team can help you 

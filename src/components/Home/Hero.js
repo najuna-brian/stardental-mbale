@@ -20,7 +20,7 @@ const Hero = () => {
           className="w-full h-full object-cover"
         />
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-r from-primary-900/90 to-primary-700/80"
+          className="absolute inset-0 bg-primary-900/40"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.3 }}
@@ -36,7 +36,7 @@ const Hero = () => {
       </FloatingElement>
       
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto mt-8 md:mt-4 lg:mt-0">
+  <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto mt-8 md:mt-4 lg:mt-0">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <TypingText 
-              text="Best dentist near me in Mbale, Uganda. Professional teeth cleaning, dental care, and emergency dental services since 2020."
+              text="Quality dental care in Mbale, Uganda. Professional teeth cleaning, dental treatment, and emergency dental services since 2020."
               speed={30}
               delay={3500}
               cursor={false}
@@ -107,13 +107,8 @@ const Hero = () => {
               >
                 <Link 
                   to="/booking" 
-                  className="relative overflow-hidden inline-flex items-center space-x-2 bg-secondary-500 hover:bg-secondary-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-500 shadow-lg hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-secondary-300 focus:ring-opacity-50"
+                  className="relative overflow-hidden inline-flex items-center space-x-2 bg-secondary-500 hover:bg-secondary-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-secondary-300 focus:ring-opacity-50"
                 >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-secondary-400 to-secondary-600 opacity-0 group-hover:opacity-100"
-                    initial={false}
-                    transition={{ duration: 0.5 }}
-                  />
                   <motion.div
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
@@ -206,7 +201,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Statistics Section */}
-          <motion.div
+          <motion.div 
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -223,7 +218,7 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.7 + index * 0.1 }}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/20 transition-all duration-300"
+                className="bg-white/20 backdrop-blur-sm rounded-lg p-4 hover:bg-white/30 transition-all duration-300"
               >
                 <div className="text-3xl font-bold text-secondary-400">
                   <CountUp 

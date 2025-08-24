@@ -65,7 +65,6 @@ const Blog = () => {
   });
 
   const featuredPosts = posts.slice(0, 3);
-  const regularPosts = posts.slice(3);
 
   if (loading) {
     return (
@@ -81,7 +80,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-500 to-primary-600 text-white py-20">
+  <section className="bg-primary-50 text-gray-900 py-20">
         <div className="container-custom">
           <motion.div 
             className="text-center max-w-4xl mx-auto"

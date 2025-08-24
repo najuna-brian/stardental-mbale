@@ -20,7 +20,7 @@ const QuickInfo = () => {
               <p className="text-gray-600">Plot 32A, North Road</p>
               <p className="text-gray-600 text-sm">Opposite North Road P/S, Mbale</p>
               <a 
-                href="https://maps.google.com/maps?q=Star+Dental+Clinic+Mbale" 
+                href="https://maps.app.goo.gl/g33LHWaaoxNtscvC7" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-primary-500 hover:text-primary-600 text-sm font-medium"

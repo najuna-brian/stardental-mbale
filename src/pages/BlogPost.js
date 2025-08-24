@@ -5,7 +5,6 @@ import {
   CalendarIcon,
   ClockIcon,
   UserIcon,
-  TagIcon,
   ShareIcon,
   ChevronLeftIcon,
   HeartIcon,
@@ -21,10 +20,14 @@ const BlogPost = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (id) {
-      fetchPost();
-      fetchRelatedPosts();
-    }
+    if (!id) return;
+    const run = async () => {
+      await fetchPost();
+      await fetchRelatedPosts();
+    };
+    run();
+    // fetchPost and fetchRelatedPosts are defined in component scope and stable.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const fetchPost = async () => {

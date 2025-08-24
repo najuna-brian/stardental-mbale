@@ -23,6 +23,8 @@ const BlogPreview = () => {
     };
 
     fetchPosts();
+    // samplePosts is a static constant; safe to ignore for deps.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Sample posts for fallback
@@ -32,7 +34,7 @@ const BlogPreview = () => {
       title: '5 Essential Tips for Daily Oral Hygiene',
       excerpt: 'Learn the fundamental practices that will keep your teeth and gums healthy every day.',
       category: 'Oral Hygiene',
-      author: 'Dr. Sarah Mukasa',
+      author: 'Dentist Charity',
       date: '2024-08-10',
       readTime: '5 min read',
       image: '/images/blog/oral-hygiene.jpg'
@@ -42,7 +44,7 @@ const BlogPreview = () => {
       title: 'Understanding Teeth Whitening: What You Need to Know',
       excerpt: 'Discover the different whitening options available and which one might be right for you.',
       category: 'Cosmetic Dentistry',
-      author: 'Dr. James Wanyama',
+      author: 'Dentist Leonard',
       date: '2024-08-08',
       readTime: '7 min read',
       image: '/images/blog/teeth-whitening.jpg'
@@ -52,7 +54,7 @@ const BlogPreview = () => {
       title: 'Making Dental Visits Fun for Kids',
       excerpt: 'Tips and strategies to help your children feel comfortable and excited about dental care.',
       category: 'Pediatric Care',
-      author: 'Dr. Grace Namuli',
+      author: 'Dentist Charity',
       date: '2024-08-05',
       readTime: '4 min read',
       image: '/images/blog/kids-dental.jpg'
@@ -103,7 +105,7 @@ const BlogPreview = () => {
                   data-aos-delay={index * 100}
                 >
                   {/* Featured Image */}
-                  <div className="relative h-48 bg-gradient-to-br from-primary-100 to-primary-200 overflow-hidden">
+                  <div className="relative h-48 bg-primary-50 overflow-hidden">
                     {post.image ? (
                       <img 
                         src={post.image} 

@@ -23,21 +23,21 @@ const BookingSection = () => {
   ];
 
   return (
-    <section className="section-padding bg-gradient-to-r from-primary-500 to-primary-600">
+  <section className="section-padding bg-primary-50">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content Side */}
           <motion.div 
-            className="text-white"
+              className="text-center"
             data-aos="fade-right"
           >
             <h2 className="text-4xl font-bold font-poppins mb-6">
-              Ready to Transform Your <span className="text-secondary-400">Smile?</span>
+              Ready to Improve Your <span className="text-secondary-400">Oral Health?</span>
             </h2>
             
             <p className="text-xl text-primary-100 mb-8 leading-relaxed">
-              Book your appointment today and take the first step towards a healthier, 
-              more confident smile. Our friendly team is ready to welcome you.
+                Book your appointment today and take the first step towards a healthier,
+                more confident smile. Our friendly team is ready to welcome you.
             </p>
 
             {/* Benefits List */}
@@ -62,10 +62,10 @@ const BookingSection = () => {
                 <PhoneIcon className="w-6 h-6 text-secondary-400" />
                 <span>Or call us directly: </span>
                 <a 
-                  href="tel:+256-XXX-XXXXXX" 
+                  href="tel:+256779003568" 
                   className="text-secondary-400 hover:text-secondary-300 font-semibold transition-colors"
                 >
-                  +256-XXX-XXXXXX
+                  +256 779 003 568
                 </a>
               </div>
               
@@ -166,24 +166,24 @@ const BookingSection = () => {
 
         {/* Statistics */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-primary-400"
+          className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-primary-200"
           data-aos="fade-up"
         >
-          <div className="text-center text-white">
-            <p className="text-4xl font-bold text-secondary-400 mb-2">500+</p>
-            <p className="text-primary-100">Happy Patients</p>
+          <div className="text-center">
+            <p className="text-4xl font-bold text-primary-700 mb-2">500+</p>
+            <p className="text-gray-600">Happy Patients</p>
           </div>
-          <div className="text-center text-white">
-            <p className="text-4xl font-bold text-secondary-400 mb-2">98%</p>
-            <p className="text-primary-100">Satisfaction Rate</p>
+          <div className="text-center">
+            <p className="text-4xl font-bold text-primary-700 mb-2">98%</p>
+            <p className="text-gray-600">Satisfaction Rate</p>
           </div>
-          <div className="text-center text-white">
-            <p className="text-4xl font-bold text-secondary-400 mb-2">5+</p>
-            <p className="text-primary-100">Years of Service</p>
+          <div className="text-center">
+            <p className="text-4xl font-bold text-primary-700 mb-2">5+</p>
+            <p className="text-gray-600">Years of Service</p>
           </div>
-          <div className="text-center text-white">
-            <p className="text-4xl font-bold text-secondary-400 mb-2">24/7</p>
-            <p className="text-primary-100">Emergency Support</p>
+          <div className="text-center">
+            <p className="text-4xl font-bold text-primary-700 mb-2">24/7</p>
+            <p className="text-gray-600">Emergency Support</p>
           </div>
         </motion.div>
       </div>

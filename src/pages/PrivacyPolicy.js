@@ -64,7 +64,7 @@ const PrivacyPolicy = () => {
                 <p className="text-gray-600">
                   Star Dental Clinic<br />
                   Mbale City, Eastern Uganda<br />
-                  Phone: +256-XXX-XXXXXX<br />
+                  Phone: +256 779 003 568<br />
                   Email: stardentalclinic.mbale@gmail.com
                 </p>
               </div>

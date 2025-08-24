@@ -14,7 +14,7 @@ const TestimonialsPreview = () => {
       location: 'Mbale',
       rating: 5,
       treatment: 'Teeth Whitening',
-      text: 'The team at Star Dental Clinic is absolutely amazing! I was nervous about getting dental treatment, but Dr. Charity and her team made me feel so comfortable. The procedure was painless, and my teeth look fantastic. I can\'t stop smiling!',
+      text: 'The team at Star Dental Clinic is very professional! I was nervous about getting dental treatment, but Dr. Charity and her team made me feel comfortable. The procedure went well, and I\'m happy with my teeth. Thank you!',
       date: new Date('2024-01-15')
     },
     {
@@ -32,7 +32,7 @@ const TestimonialsPreview = () => {
       location: 'Mbale',
       rating: 5,
       treatment: 'Orthodontics',
-      text: 'My teenage daughter needed braces, and we couldn\'t be happier with the results. The orthodontist explained everything clearly, and my daughter actually looked forward to her appointments. Her smile transformation is incredible!',
+      text: 'My teenage daughter needed braces, and we are satisfied with the results. The orthodontist explained everything clearly, and my daughter was comfortable during her appointments. Her smile has improved significantly!',
       date: new Date('2024-02-05')
     }
   ];
@@ -80,13 +80,7 @@ const TestimonialsPreview = () => {
           className="max-w-4xl mx-auto mb-16"
           data-aos="fade-up"
         >
-          <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl p-8 md:p-12 text-white relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full -translate-x-20 -translate-y-20"></div>
-              <div className="absolute bottom-0 right-0 w-32 h-32 bg-white rounded-full translate-x-16 translate-y-16"></div>
-            </div>
-
+          <div className="surface rounded-2xl p-8 md:p-12 text-gray-800 relative overflow-hidden">
             <div className="relative z-10">
               {testimonials.length > 0 && (
                 <motion.div
@@ -98,10 +92,10 @@ const TestimonialsPreview = () => {
                 >
                   {/* Quote */}
                   <div className="mb-8">
-                    <svg className="w-12 h-12 text-secondary-400 mx-auto mb-6" fill="currentColor" viewBox="0 0 32 32">
+                    <svg className="w-12 h-12 text-secondary-500 mx-auto mb-6" fill="currentColor" viewBox="0 0 32 32">
                       <path d="M10 8v8c0 2.2-1.8 4-4 4v4c4.4 0 8-3.6 8-8V8h-4zm12 0v8c0 2.2-1.8 4-4 4v4c4.4 0 8-3.6 8-8V8h-4z"/>
                     </svg>
-                    <p className="text-xl md:text-2xl leading-relaxed mb-6">
+                    <p className="text-xl md:text-2xl leading-relaxed mb-6 text-gray-700">
                       "{testimonials[currentIndex]?.text}"
                     </p>
                   </div>
@@ -113,8 +107,8 @@ const TestimonialsPreview = () => {
 
                   {/* Patient Info */}
                   <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                      <span className="text-2xl font-bold">
+                    <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
+                      <span className="text-2xl font-bold text-primary-700">
                         {testimonials[currentIndex]?.name?.charAt(0) || 'P'}
                       </span>
                     </div>
@@ -122,7 +116,7 @@ const TestimonialsPreview = () => {
                       <p className="font-semibold text-lg">
                         {testimonials[currentIndex]?.name}
                       </p>
-                      <p className="text-primary-100">
+                      <p className="text-gray-500">
                         {testimonials[currentIndex]?.location} • {testimonials[currentIndex]?.treatment}
                       </p>
                     </div>
@@ -139,7 +133,7 @@ const TestimonialsPreview = () => {
                     key={index}
                     onClick={() => setCurrentIndex(index)}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentIndex ? 'bg-secondary-400' : 'bg-white/30'
+                      index === currentIndex ? 'bg-secondary-400' : 'bg-gray-300'
                     }`}
                   />
                 ))}
@@ -178,7 +172,7 @@ const TestimonialsPreview = () => {
 
         {/* Google Reviews Integration Notice */}
         <motion.div 
-          className="bg-gradient-to-r from-secondary-50 to-secondary-100 rounded-xl p-8 text-center mb-12"
+          className="surface rounded-xl p-8 text-center mb-12"
           data-aos="fade-up"
         >
           <h3 className="text-2xl font-bold text-gray-800 mb-4">
@@ -188,7 +182,7 @@ const TestimonialsPreview = () => {
             Read authentic reviews from our patients and share your own experience
           </p>
           <a 
-            href="https://maps.google.com" 
+            href="https://maps.app.goo.gl/g33LHWaaoxNtscvC7" 
             target="_blank" 
             rel="noopener noreferrer"
             className="btn-secondary inline-flex items-center space-x-2"

@@ -51,11 +51,7 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className={`fixed w-full z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-          : 'bg-white/90 backdrop-blur-sm shadow-sm lg:bg-transparent lg:shadow-none'
-      }`}
+      className={`fixed w-full z-50 transition-all duration-500 bg-white/95 backdrop-blur-md shadow`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -79,21 +75,13 @@ const Navbar = () => {
               />
               <div>
                 <motion.h1 
-                  className={`font-poppins font-bold text-xl lg:text-xl transition-colors ${
-                    isScrolled 
-                      ? 'text-gray-800' 
-                      : 'text-gray-800 lg:text-white'
-                  } group-hover:text-primary-500`}
+                  className={`font-poppins font-bold text-xl lg:text-xl transition-colors text-primary-500 group-hover:text-primary-500`}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   Star Dental
                 </motion.h1>
-                <p className={`text-xs transition-colors ${
-                  isScrolled 
-                    ? 'text-gray-600' 
-                    : 'text-gray-600 lg:text-gray-300'
-                }`}>
+                <p className={`text-xs transition-colors text-gray-600`}>
                   Clinic Mbale
                 </p>
               </div>
@@ -118,8 +106,8 @@ const Navbar = () => {
                   to={link.path}
                   className={`relative font-medium transition-all duration-300 group ${
                     location.pathname === link.path
-                      ? 'text-primary-500'
-                      : 'text-gray-700 hover:text-primary-500'
+                      ? 'text-primary-600'
+                      : 'text-gray-700 hover:text-primary-600'
                   }`}
                 >
                   <motion.span
@@ -236,14 +224,14 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="lg:hidden fixed inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-600 z-50"
+              className="lg:hidden fixed inset-0 bg-white z-50"
               style={{ zIndex: 9999 }}
             >
               {/* Animated Background Elements */}
               <div className="absolute inset-0 overflow-hidden">
                 {/* Floating circles */}
                 <motion.div
-                  className="absolute -top-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-xl"
+                  className="absolute -top-10 -left-10 w-40 h-40 bg-primary-100/30 rounded-full blur-xl"
                   animate={{
                     scale: [1, 1.2, 1],
                     rotate: [0, 180, 360],
@@ -255,7 +243,7 @@ const Navbar = () => {
                   }}
                 />
                 <motion.div
-                  className="absolute top-1/4 -right-20 w-60 h-60 bg-secondary-400/20 rounded-full blur-2xl"
+                  className="absolute top-1/4 -right-20 w-60 h-60 bg-secondary-100/20 rounded-full blur-2xl"
                   animate={{
                     scale: [1, 1.3, 1],
                     rotate: [360, 180, 0],
@@ -267,7 +255,7 @@ const Navbar = () => {
                   }}
                 />
                 <motion.div
-                  className="absolute bottom-10 left-1/4 w-32 h-32 bg-white/15 rounded-full blur-xl"
+                  className="absolute bottom-10 left-1/4 w-32 h-32 bg-primary-100/40 rounded-full blur-xl"
                   animate={{
                     scale: [1, 1.1, 1],
                     y: [0, -20, 0],
@@ -303,14 +291,14 @@ const Navbar = () => {
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     />
                     <div>
-                      <h2 className="text-white font-bold text-xl">Star Dental</h2>
-                      <p className="text-white/80 text-sm">Clinic Mbale</p>
+                      <h2 className="text-gray-800 font-bold text-xl">Star Dental</h2>
+                      <p className="text-gray-600 text-sm">Clinic Mbale</p>
                     </div>
                   </div>
                   
                   <motion.button
                     onClick={() => setIsOpen(false)}
-                    className="p-3 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300"
+                    className="p-3 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all duration-300"
                     whileHover={{ scale: 1.1, rotate: 90 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -320,35 +308,36 @@ const Navbar = () => {
 
                 {/* Navigation Links */}
                 <div className="flex-1 flex flex-col justify-center px-6">
-                  <motion.nav className="space-y-2">
-                    {navLinks.map((link, index) => (
-                      <motion.div
-                        key={link.name}
-                        initial={{ x: -100, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ 
-                          duration: 0.6, 
-                          delay: 0.4 + index * 0.1,
-                          type: "spring",
-                          stiffness: 100
-                        }}
-                      >
-                        <Link
-                          to={link.path}
-                          className={`block group relative overflow-hidden`}
-                          onClick={() => setIsOpen(false)}
+                  <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-lg border border-gray-100 p-6 mx-4">
+                    <motion.nav className="space-y-2">
+                      {navLinks.map((link, index) => (
+                        <motion.div
+                          key={link.name}
+                          initial={{ x: -100, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          transition={{ 
+                            duration: 0.6, 
+                            delay: 0.4 + index * 0.1,
+                            type: "spring",
+                            stiffness: 100
+                          }}
                         >
-                          <motion.div
-                            className="flex items-center justify-between py-4 px-6 rounded-2xl transition-all duration-300"
-                            whileHover={{ 
-                              backgroundColor: "rgba(255, 255, 255, 0.1)",
-                              scale: 1.02
-                            }}
-                            whileTap={{ scale: 0.98 }}
+                          <Link
+                            to={link.path}
+                            className={`block group relative overflow-hidden`}
+                            onClick={() => setIsOpen(false)}
                           >
+                            <motion.div
+                              className="flex items-center justify-between py-4 px-6 rounded-2xl transition-all duration-300"
+                              whileHover={{ 
+                                backgroundColor: "rgba(59, 130, 246, 0.1)",
+                                scale: 1.02
+                              }}
+                              whileTap={{ scale: 0.98 }}
+                            >
                             <div className="flex items-center space-x-4">
                               <motion.div
-                                className="w-2 h-2 bg-white rounded-full opacity-60"
+                                className="w-2 h-2 bg-primary-500 rounded-full opacity-60"
                                 whileHover={{ 
                                   scale: 1.5,
                                   backgroundColor: "#ffc107"
@@ -357,8 +346,8 @@ const Navbar = () => {
                               />
                               <span className={`text-2xl font-semibold transition-all duration-300 ${
                                 location.pathname === link.path
-                                  ? 'text-secondary-400'
-                                  : 'text-white group-hover:text-secondary-400'
+                                  ? 'text-primary-600'
+                                  : 'text-gray-800 group-hover:text-primary-600'
                               }`}>
                                 {link.name}
                               </span>
@@ -370,7 +359,7 @@ const Navbar = () => {
                               whileHover={{ x: 0 }}
                             >
                               <svg 
-                                className="w-6 h-6 text-secondary-400" 
+                                className="w-6 h-6 text-primary-500" 
                                 fill="none" 
                                 stroke="currentColor" 
                                 viewBox="0 0 24 24"
@@ -388,7 +377,7 @@ const Navbar = () => {
                           {/* Active indicator */}
                           {location.pathname === link.path && (
                             <motion.div
-                              className="absolute left-6 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-secondary-400 rounded-full"
+                              className="absolute left-6 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-primary-500 rounded-full"
                               layoutId="activeIndicator"
                               transition={{ type: "spring", stiffness: 300, damping: 30 }}
                             />
@@ -397,6 +386,7 @@ const Navbar = () => {
                       </motion.div>
                     ))}
                   </motion.nav>
+                  </div>
                 </div>
 
                 {/* Contact Info & CTA */}
@@ -407,16 +397,16 @@ const Navbar = () => {
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
                   {/* Contact Info */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 space-y-4">
-                    <h3 className="text-white font-semibold text-lg mb-4">Get In Touch</h3>
+                  <div className="bg-gray-50 rounded-2xl p-6 space-y-4">
+                    <h3 className="text-gray-800 font-semibold text-lg mb-4">Get In Touch</h3>
                     
                     <motion.a 
                       href="tel:+256779003568"
-                      className="flex items-center space-x-3 text-white/90 hover:text-secondary-400 transition-colors"
+                      className="flex items-center space-x-3 text-gray-700 hover:text-primary-600 transition-colors"
                       whileHover={{ x: 5 }}
                     >
-                      <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                        <PhoneIcon className="w-5 h-5" />
+                      <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                        <PhoneIcon className="w-5 h-5 text-primary-600" />
                       </div>
                       <div>
                         <p className="font-medium">Call Now</p>
@@ -425,11 +415,11 @@ const Navbar = () => {
                     </motion.a>
                     
                     <motion.div 
-                      className="flex items-center space-x-3 text-white/90"
+                      className="flex items-center space-x-3 text-gray-700"
                       whileHover={{ x: 5 }}
                     >
-                      <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                        <svg className="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
                       </div>
@@ -448,7 +438,7 @@ const Navbar = () => {
                     >
                       <Link 
                         to="/booking" 
-                        className="block w-full bg-secondary-500 hover:bg-secondary-600 text-white text-center py-4 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300"
+                        className="block w-full bg-primary-600 hover:bg-primary-700 text-white text-center py-4 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300"
                         onClick={() => setIsOpen(false)}
                       >
                         Book Appointment
@@ -463,7 +453,7 @@ const Navbar = () => {
                         href="https://wa.me/256779003568"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full border-2 border-white/30 text-white text-center py-4 rounded-2xl font-semibold text-lg hover:bg-white/10 transition-all duration-300"
+                        className="block w-full border-2 border-primary-600 text-primary-600 text-center py-4 rounded-2xl font-semibold text-lg hover:bg-primary-50 transition-all duration-300"
                       >
                         WhatsApp Us
                       </a>

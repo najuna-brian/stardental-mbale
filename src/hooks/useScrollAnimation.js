@@ -93,7 +93,6 @@ export const useParallax = (speed = 0.5) => {
     if (!element) return;
 
     const handleScroll = () => {
-      const rect = element.getBoundingClientRect();
       const scrolled = window.pageYOffset;
       const rate = scrolled * -speed;
       setTransform(`translateY(${rate}px)`);

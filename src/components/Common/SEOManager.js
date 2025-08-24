@@ -3,27 +3,27 @@ import { useLocation } from 'react-router-dom';
 
 const pageData = {
   '/': {
-    title: 'Dentist near me Mbale | Star Dental Clinic - Best Teeth Cleaning & Dental Care',
-    description: 'Best dentist near me in Mbale, Uganda. Professional teeth cleaning, tooth pain relief, dental checkup, and affordable dental care. North Road location. Open 8:30am-6pm. Book today!',
-    keywords: 'dentist near me Mbale, teeth cleaning Mbale, dental clinic near me, tooth pain Mbale, dental checkup, best dentist Mbale Uganda, affordable dental care, emergency dentist Mbale',
+    title: 'Dentist in Mbale | Star Dental Clinic – Teeth Cleaning & Dental Care',
+    description: 'Quality dental care in Mbale, Uganda. Professional teeth cleaning, tooth pain relief, dental checkups, and family dental care on North Road. Open 8:30am–6pm. Book today.',
+    keywords: 'dentist Mbale, teeth cleaning Mbale, dental clinic Mbale, tooth pain Mbale, dental checkup, affordable dental care, emergency dentist Mbale',
     canonical: 'https://stardental-mbale.web.app'
   },
   '/about': {
-    title: 'Best Dentist in Mbale | Professional Dental Team | Star Dental Clinic',
-    description: 'Meet the best dentist in Mbale, Uganda. Experienced dental team providing quality dental care since 2020. Modern dental equipment, gentle care, and professional treatment.',
-    keywords: 'best dentist Mbale, professional dentist Uganda, experienced dental team, quality dental care Mbale, gentle dentist',
+    title: 'About Our Dental Team in Mbale | Star Dental Clinic',
+    description: 'Meet our experienced dental team providing gentle, professional care since 2020. Modern equipment and a patient-first approach in Mbale, Uganda.',
+    keywords: 'dentist Mbale team, professional dentist Uganda, experienced dental team, quality dental care Mbale, gentle dentist',
     canonical: 'https://stardental-mbale.web.app/about'
   },
   '/services': {
     title: 'Dental Services Mbale | Teeth Cleaning, Fillings & Tooth Extraction',
-    description: 'Complete dental services in Mbale: teeth cleaning, dental fillings, tooth extraction, dental crowns, root canal treatment, teeth whitening, and braces. Affordable prices.',
-    keywords: 'teeth cleaning Mbale, dental fillings, tooth extraction Mbale, dental crowns, root canal treatment, teeth whitening Mbale, braces Uganda, dental implants',
+  description: 'Comprehensive dental services in Mbale: teeth cleaning, dental fillings, tooth extraction, dental crowns, root canal treatment, teeth whitening, and orthodontics.',
+  keywords: 'teeth cleaning Mbale, dental fillings, tooth extraction Mbale, dental crowns, root canal treatment, teeth whitening Mbale, orthodontics Mbale',
     canonical: 'https://stardental-mbale.web.app/services'
   },
   '/testimonials': {
-    title: 'Dental Clinic Reviews Mbale | Happy Patients | Star Dental Clinic',
-    description: 'Read reviews from happy patients at Star Dental Clinic Mbale. Real testimonials about our dental care, professional service, and affordable treatment.',
-    keywords: 'dental clinic reviews Mbale, patient testimonials Uganda, dental care reviews, happy patients Mbale, best dental clinic',
+    title: 'Dental Clinic Reviews in Mbale | Patient Testimonials | Star Dental Clinic',
+    description: 'Read patient reviews of Star Dental Clinic Mbale. Genuine experiences about our dental care and professional service.',
+    keywords: 'dental clinic reviews Mbale, patient testimonials Uganda, dental care reviews, happy patients Mbale',
     canonical: 'https://stardental-mbale.web.app/testimonials'
   },
   '/contact': {
@@ -33,9 +33,9 @@ const pageData = {
     canonical: 'https://stardental-mbale.web.app/contact'
   },
   '/booking': {
-    title: 'Book Dental Appointment Online | Dentist Mbale | Same Day Booking',
-    description: 'Book dental appointment online at Star Dental Clinic Mbale. Same day dental appointments available. Easy online booking for dental checkup, teeth cleaning, and all dental services.',
-    keywords: 'book dental appointment online, same day dental appointment Mbale, dental booking, schedule dentist appointment, online dental scheduling',
+    title: 'Book a Dental Appointment Online | Star Dental Clinic Mbale',
+    description: 'Book your dental appointment online at Star Dental Clinic Mbale. Easy scheduling for checkups, teeth cleaning, and other dental services.',
+    keywords: 'book dental appointment online, dental appointment Mbale, dental booking, schedule dentist appointment, online dental scheduling',
     canonical: 'https://stardental-mbale.web.app/booking'
   },
   '/blog': {
@@ -141,7 +141,7 @@ const updateStructuredData = (pageData) => {
     "@context": "https://schema.org",
     "@type": "DentalClinic",
     "name": "Star Dental Clinic Mbale",
-    "description": "Best dentist near me in Mbale, Uganda. Professional teeth cleaning, dental care, and emergency dental services.",
+  "description": "Quality dental care in Mbale, Uganda. Professional teeth cleaning, dental care, and emergency dental services.",
     "url": "https://stardental-mbale.web.app",
     "telephone": "+256779003568",
     "email": "stardentalclinic.mbale@gmail.com",
@@ -259,13 +259,7 @@ const updateStructuredData = (pageData) => {
         "name": "Jinja"
       }
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "127",
-      "bestRating": "5",
-      "worstRating": "1"
-    }
+  // Aggregate ratings should reflect actual public data; omit if not verified
   };
   
   script.textContent = JSON.stringify(structuredData);

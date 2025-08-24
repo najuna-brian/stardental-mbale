@@ -1,15 +1,5 @@
 {
   "projects": {
     "default": "stardental-mbale"
-  },
-  "targets": {
-    "stardental-mbale": {
-      "hosting": {
-        "stardentalclinic-mbale": [
-          "stardentalclinic-mbale"
-        ]
-      }
-    }
-  },
-  "etags": {}
+  }
 }

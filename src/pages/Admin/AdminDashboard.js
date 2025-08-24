@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ChartBarIcon,
-  UserGroupIcon,
   CalendarDaysIcon,
   DocumentTextIcon,
   CogIcon,
@@ -143,7 +142,7 @@ const SettingsPanel = () => {
               <input
                 type="tel"
                 className="form-input"
-                defaultValue="+256-XXX-XXXXXX"
+                defaultValue="+256 779 003 568"
               />
             </div>
             <div>
@@ -163,7 +162,7 @@ const SettingsPanel = () => {
               <input
                 type="tel"
                 className="form-input"
-                defaultValue="+256-XXX-XXXXXX"
+                defaultValue="+256 779 003 568"
               />
             </div>
           </div>

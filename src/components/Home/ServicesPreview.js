@@ -52,9 +52,9 @@ const ServicesPreview = () => {
   ];
 
   const colorClasses = {
-    primary: 'from-primary-500 to-primary-600',
-    secondary: 'from-secondary-500 to-secondary-600',
-    accent: 'from-accent-500 to-accent-600'
+    primary: 'bg-primary-100 text-primary-700',
+    secondary: 'bg-secondary-100 text-secondary-700',
+    accent: 'bg-accent-100 text-accent-700'
   };
 
   return (
@@ -79,13 +79,13 @@ const ServicesPreview = () => {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden card-hover"
+              className="group surface hover:shadow-xl transition-all duration-300 overflow-hidden card-hover"
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
               <div className="p-8">
-                <div className={`w-16 h-16 bg-gradient-to-r ${colorClasses[service.color]} rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <service.icon className="w-8 h-8 text-white" />
+                <div className={`w-16 h-16 ${colorClasses[service.color]} rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <service.icon className="w-8 h-8" />
                 </div>
                 
                 <h3 className="text-xl font-semibold text-gray-800 mb-3 group-hover:text-primary-500 transition-colors">
@@ -129,8 +129,8 @@ const ServicesPreview = () => {
             
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h4 className="font-semibold text-gray-800 mb-4 text-center">After Treatment</h4>
-              <div className="w-full h-48 bg-gradient-to-br from-primary-100 to-primary-200 rounded-lg flex items-center justify-center">
-                <span className="text-primary-600">After Photo</span>
+              <div className="w-full h-48 bg-primary-50 rounded-lg flex items-center justify-center">
+                <span className="text-primary-700">After Photo</span>
               </div>
             </div>
           </div>
