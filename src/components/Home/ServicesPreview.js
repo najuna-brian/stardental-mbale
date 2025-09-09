@@ -121,16 +121,24 @@ const ServicesPreview = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="bg-white rounded-lg p-6 shadow-md">
-              <h4 className="font-semibold text-gray-800 mb-4 text-center">Before Treatment</h4>
-              <div className="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500">Before Photo</span>
+              <h4 className="font-semibold text-gray-800 mb-4 text-center">Gap Closure</h4>
+              <div className="w-full h-48 rounded-lg overflow-hidden">
+                <img 
+                  src="/images/treatments/before.jpeg" 
+                  alt="Before dental treatment" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             
             <div className="bg-white rounded-lg p-6 shadow-md">
-              <h4 className="font-semibold text-gray-800 mb-4 text-center">After Treatment</h4>
-              <div className="w-full h-48 bg-primary-50 rounded-lg flex items-center justify-center">
-                <span className="text-primary-700">After Photo</span>
+              <h4 className="font-semibold text-gray-800 mb-4 text-center">Teeth Whitening</h4>
+              <div className="w-full h-48 rounded-lg overflow-hidden">
+                <img 
+                  src="/images/treatments/after.jpeg" 
+                  alt="After dental treatment" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

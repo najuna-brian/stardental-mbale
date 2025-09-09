@@ -2,40 +2,39 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
-import { useAuth } from '../../contexts/AuthContext';
+import { authService } from '../../firebase/auth';
 import toast from 'react-hot-toast';
 
-const AdminLogin = () => {
+const AdminRegistration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  const { signIn } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+    
     setIsLoading(true);
 
     try {
-      console.log('Attempting login with:', email);
-      const { user, error } = await signIn(email, password);
+      const { user, error } = await authService.createUser(email, password);
       
       if (error) {
-        console.error('Login error:', error);
         toast.error(error);
       } else if (user) {
-        console.log('Login successful, user:', user);
-        toast.success('Welcome back!');
-        navigate('/admin/dashboard');
-      } else {
-        console.error('No user or error returned');
-        toast.error('Login failed. Unknown error.');
+        toast.success('Admin account created successfully!');
+        navigate('/admin/login');
       }
     } catch (error) {
-      console.error('Login exception:', error);
-      toast.error('Login failed. Please try again.');
+      toast.error('Registration failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -54,11 +53,11 @@ const AdminLogin = () => {
           <div className="w-16 h-16 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-4">
             <span className="text-white font-bold text-2xl">S</span>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Admin Portal</h2>
-          <p className="text-gray-600 mt-2">Star Dental Clinic Management</p>
+          <h2 className="text-3xl font-bold text-gray-900">Admin Registration</h2>
+          <p className="text-gray-600 mt-2">Create New Admin Account</p>
         </div>
 
-        {/* Login Form */}
+        {/* Registration Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -83,7 +82,7 @@ const AdminLogin = () => {
                 type={showPassword ? 'text' : 'password'}
                 required
                 className="form-input pr-10"
-                placeholder="Enter your password"
+                placeholder="Create a strong password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -100,6 +99,22 @@ const AdminLogin = () => {
               </button>
             </div>
           </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Confirm Password
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                required
+                className="form-input pr-10"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+          </div>
 
           <button
             type="submit"
@@ -109,27 +124,28 @@ const AdminLogin = () => {
             {isLoading ? (
               <>
                 <div className="loading-spinner w-5 h-5"></div>
-                <span>Signing In...</span>
+                <span>Creating Account...</span>
               </>
             ) : (
-              <span>Sign In</span>
+              <span>Create Admin Account</span>
             )}
           </button>
+          
+          <div className="text-center">
+            <button 
+              type="button" 
+              onClick={() => navigate('/admin/login')}
+              className="text-primary-600 hover:text-primary-800 text-sm font-medium"
+            >
+              Already have an account? Sign in
+            </button>
+          </div>
         </form>
-
-        {/* Demo Credentials */}
-        <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-          <p className="text-sm text-gray-600 text-center">
-            <strong>Admin Credentials:</strong><br />
-            Email: watakatim@icloud.com<br />
-            Password: Admin1212
-          </p>
-        </div>
 
         {/* Security Notice */}
         <div className="mt-6 text-center">
           <p className="text-xs text-gray-500">
-            This is a secure admin area. Access is restricted to authorized personnel only.
+            This is a secure admin area. Only authorized personnel should register.
           </p>
         </div>
       </motion.div>
@@ -137,4 +153,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default AdminRegistration;
