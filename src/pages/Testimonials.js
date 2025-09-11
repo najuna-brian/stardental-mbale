@@ -115,7 +115,7 @@ const Testimonials = () => {
             <h1 className="text-5xl font-bold font-poppins mb-6">
               Patient <span className="text-secondary-400">Success Stories</span>
             </h1>
-            <p className="text-xl text-primary-100 leading-relaxed">
+            <p className="text-xl text-primary-500 leading-relaxed">
               Read what our satisfied patients have to say about their experiences 
               at Star Dental Clinic Mbale. Their smiles tell our story.
             </p>

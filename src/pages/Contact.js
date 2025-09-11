@@ -123,7 +123,7 @@ const Contact = () => {
             <h1 className="text-5xl font-bold font-poppins mb-6">
               Get in <span className="text-secondary-400">Touch</span>
             </h1>
-            <p className="text-xl text-primary-100 leading-relaxed">
+            <p className="text-xl text-primary-500 leading-relaxed">
               We're here to help with all your dental needs. Contact us today to schedule 
               your appointment or ask any questions about our services.
             </p>

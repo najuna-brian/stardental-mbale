@@ -140,7 +140,7 @@ const Services = () => {
             <h1 className="text-5xl font-bold font-poppins mb-6">
               Our <span className="text-secondary-400">Dental Services</span>
             </h1>
-            <p className="text-xl text-primary-100 leading-relaxed">
+            <p className="text-xl text-primary-500 leading-relaxed">
               Comprehensive dental care tailored to your unique needs. From routine maintenance 
               to advanced procedures, we're committed to helping you achieve optimal oral health.
             </p>

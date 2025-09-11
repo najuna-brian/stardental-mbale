@@ -34,11 +34,10 @@ const Blog = () => {
 
   const fetchPosts = async () => {
     try {
-      const postsRef = collection(db, 'blogPosts');
+      const postsRef = collection(db, 'blog'); // Changed from 'blogPosts' to 'blog' to match BlogManager
       const q = query(
         postsRef,
-        where('status', '==', 'published'),
-        orderBy('publishDate', 'desc'),
+        orderBy('createdAt', 'desc'),
         limit(20)
       );
       
@@ -46,7 +45,7 @@ const Blog = () => {
       const postsData = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
-        publishDate: doc.data().publishDate?.toDate()
+        publishDate: doc.data().createdAt?.toDate() // Changed from publishDate to createdAt
       }));
       
       setPosts(postsData);
@@ -89,7 +88,7 @@ const Blog = () => {
             <h1 className="text-5xl font-bold font-poppins mb-6">
               Our <span className="text-secondary-400">Learning Hub</span>
             </h1>
-            <p className="text-xl text-primary-100 leading-relaxed">
+            <p className="text-xl text-primary-500 leading-relaxed">
               Discover expert tips, latest trends, and valuable insights about oral health 
               and dental care from our experienced team of dental professionals.
             </p>
@@ -157,8 +156,18 @@ const Blog = () => {
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
                 >
-                  <div className="h-48 bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
-                    <span className="text-white text-lg font-medium">Featured Image</span>
+                  <div className="h-48 overflow-hidden">
+                    {post.imageUrl ? (
+                      <img 
+                        src={post.imageUrl} 
+                        alt={post.title} 
+                        className="w-full h-full object-cover" 
+                      />
+                    ) : (
+                      <div className="h-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
+                        <span className="text-white text-lg font-medium">Star Dental</span>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="p-6">
@@ -244,8 +253,18 @@ const Blog = () => {
                     data-aos="fade-up"
                     data-aos-delay={index * 50}
                   >
-                    <div className="h-40 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                      <span className="text-gray-500">Article Image</span>
+                    <div className="h-40 overflow-hidden">
+                      {post.imageUrl ? (
+                        <img 
+                          src={post.imageUrl} 
+                          alt={post.title} 
+                          className="w-full h-full object-cover" 
+                        />
+                      ) : (
+                        <div className="h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                          <span className="text-gray-500">Star Dental</span>
+                        </div>
+                      )}
                     </div>
                     
                     <div className="p-6">

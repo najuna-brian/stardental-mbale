@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { 
@@ -6,9 +6,12 @@ import {
   PencilIcon,
   TrashIcon,
   EyeIcon,
-  XMarkIcon
+  XMarkIcon,
+  PhotoIcon
 } from '@heroicons/react/24/outline';
 import { blogService } from '../../firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase/config';
 import toast from 'react-hot-toast';
 
 const BlogManager = () => {
@@ -17,7 +20,11 @@ const BlogManager = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingPost, setEditingPost] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
+  const [uploadingImage, setUploadingImage] = useState(false);
+  
+  const fileInputRef = useRef(null);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
 
   useEffect(() => {
@@ -48,24 +55,94 @@ const BlogManager = () => {
       setValue('category', post.category);
       setValue('author', post.author);
       setValue('readTime', post.readTime);
+      
+      // Set image preview if post has an image
+      if (post.imageUrl) {
+        setImagePreview(post.imageUrl);
+      } else {
+        setImagePreview('');
+      }
     } else {
       reset();
+      setImagePreview('');
+      setImageFile(null);
     }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setEditingPost(null);
+    setImageFile(null);
+    setImagePreview('');
     reset();
+  };
+  
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    // Check if file is an image
+    if (!file.type.match('image.*')) {
+      toast.error('Please select an image file');
+      return;
+    }
+    
+    // Check file size (limit to 2MB)
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error('Image size should be less than 2MB');
+      return;
+    }
+    
+    setImageFile(file);
+    
+    // Create preview
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setImagePreview(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
+  
+  const uploadImage = async (file) => {
+    if (!file) return null;
+    
+    setUploadingImage(true);
+    try {
+      // Create a unique filename
+      const filename = `blog-${Date.now()}-${file.name}`;
+      const storageRef = ref(storage, `blog-images/${filename}`);
+      
+      // Upload file
+      const snapshot = await uploadBytes(storageRef, file);
+      
+      // Get download URL
+      const downloadUrl = await getDownloadURL(snapshot.ref);
+      return downloadUrl;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      toast.error('Failed to upload image');
+      return null;
+    } finally {
+      setUploadingImage(false);
+    }
   };
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     
     try {
+      // Upload image if there's a new one
+      let imageUrl = null;
+      if (imageFile) {
+        imageUrl = await uploadImage(imageFile);
+      }
+      
       const postData = {
         ...data,
-        published: true
+        published: true,
+        // Add image URL if we have one from the upload or keep existing one
+        ...(imageUrl ? { imageUrl } : {}),
+        ...(editingPost?.imageUrl && !imageFile ? { imageUrl: editingPost.imageUrl } : {})
       };
 
       if (editingPost) {
@@ -311,6 +388,54 @@ const BlogManager = () => {
                       {...register('readTime')}
                     />
                   </div>
+                </div>
+                
+                {/* Image Upload Section */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Blog Image
+                  </label>
+                  <div className="mt-1 flex items-center">
+                    {imagePreview ? (
+                      <div className="relative">
+                        <img 
+                          src={imagePreview} 
+                          alt="Blog preview" 
+                          className="w-32 h-32 object-cover rounded-lg"
+                        />
+                        <button 
+                          type="button"
+                          onClick={() => {
+                            setImagePreview('');
+                            setImageFile(null);
+                            if (fileInputRef.current) fileInputRef.current.value = '';
+                          }}
+                          className="absolute top-0 right-0 bg-red-500 rounded-full p-1 text-white transform translate-x-1/2 -translate-y-1/2"
+                        >
+                          <XMarkIcon className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                      >
+                        <PhotoIcon className="h-5 w-5 mr-2 text-gray-400" />
+                        Upload Image
+                      </button>
+                    )}
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      className="hidden"
+                    />
+                  </div>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Recommended: JPG, PNG. Max size: 2MB
+                  </p>
                 </div>
 
                 <div>

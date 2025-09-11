@@ -104,7 +104,7 @@ const About = () => {
             <h1 className="text-5xl font-bold font-poppins mb-6">
               About <span className="text-secondary-400">Star Dental Clinic</span>
             </h1>
-            <p className="text-xl text-primary-100 leading-relaxed">
+            <p className="text-xl text-primary-500 leading-relaxed">
               Providing quality dental healthcare and promoting oral health education 
               for our community in Eastern Uganda and surrounding areas.
             </p>

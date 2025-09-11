@@ -35,7 +35,7 @@ const BookingSection = () => {
               Ready to Improve Your <span className="text-secondary-400">Oral Health?</span>
             </h2>
             
-            <p className="text-xl text-primary-100 mb-8 leading-relaxed">
+            <p className="text-xl text-primary-500 mb-8 leading-relaxed">
                 Book your appointment today and take the first step towards a healthier,
                 more confident smile. Our friendly team is ready to welcome you.
             </p>
@@ -51,14 +51,14 @@ const BookingSection = () => {
                   transition={{ delay: index * 0.1 }}
                 >
                   <CheckCircleIcon className="w-6 h-6 text-secondary-400 flex-shrink-0" />
-                  <span className="text-primary-100">{benefit}</span>
+                  <span className="text-primary-500">{benefit}</span>
                 </motion.div>
               ))}
             </div>
 
             {/* Contact Options */}
             <div className="space-y-4">
-              <div className="flex items-center space-x-3 text-primary-100">
+              <div className="flex items-center space-x-3 text-primary-500">
                 <PhoneIcon className="w-6 h-6 text-secondary-400" />
                 <span>Or call us directly: </span>
                 <a 
@@ -69,7 +69,7 @@ const BookingSection = () => {
                 </a>
               </div>
               
-              <div className="flex items-center space-x-3 text-primary-100">
+              <div className="flex items-center space-x-3 text-primary-500">
                 <ClockIcon className="w-6 h-6 text-secondary-400" />
                 <span>Available: Mon-Fri 8AM-6PM, Sat 8AM-2PM</span>
               </div>

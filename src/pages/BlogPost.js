@@ -32,12 +32,12 @@ const BlogPost = () => {
 
   const fetchPost = async () => {
     try {
-      const postDoc = await getDoc(doc(db, 'blogPosts', id));
+      const postDoc = await getDoc(doc(db, 'blog', id)); // Changed from 'blogPosts' to 'blog'
       if (postDoc.exists()) {
         setPost({
           id: postDoc.id,
           ...postDoc.data(),
-          publishDate: postDoc.data().publishDate?.toDate()
+          publishDate: postDoc.data().createdAt?.toDate() // Changed from publishDate to createdAt
         });
       }
     } catch (error) {
@@ -49,11 +49,10 @@ const BlogPost = () => {
 
   const fetchRelatedPosts = async () => {
     try {
-      const postsRef = collection(db, 'blogPosts');
+      const postsRef = collection(db, 'blog'); // Changed from 'blogPosts' to 'blog'
       const q = query(
         postsRef,
-        where('status', '==', 'published'),
-        orderBy('publishDate', 'desc'),
+        orderBy('createdAt', 'desc'), // Changed from publishDate to createdAt
         limit(4)
       );
       
@@ -64,7 +63,7 @@ const BlogPost = () => {
         .map(doc => ({
           id: doc.id,
           ...doc.data(),
-          publishDate: doc.data().publishDate?.toDate()
+          publishDate: doc.data().createdAt?.toDate() // Changed from publishDate to createdAt
         }));
       
       setRelatedPosts(postsData);
@@ -182,10 +181,20 @@ const BlogPost = () => {
               </button>
             </div>
 
-            {/* Featured Image Placeholder */}
-            <div className="w-full h-64 lg:h-96 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center mb-12">
-              <span className="text-primary-600 text-lg font-medium">Article Featured Image</span>
-            </div>
+            {/* Featured Image */}
+            {post.imageUrl ? (
+              <div className="w-full h-64 lg:h-96 rounded-xl overflow-hidden mb-12">
+                <img 
+                  src={post.imageUrl} 
+                  alt={post.title} 
+                  className="w-full h-full object-cover" 
+                />
+              </div>
+            ) : (
+              <div className="w-full h-64 lg:h-96 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center mb-12">
+                <span className="text-primary-600 text-lg font-medium">Star Dental</span>
+              </div>
+            )}
           </motion.article>
         </div>
       </section>
@@ -297,8 +306,18 @@ const BlogPost = () => {
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
                 >
-                  <div className="h-40 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                    <span className="text-gray-500">Article Image</span>
+                  <div className="h-40 overflow-hidden">
+                    {relatedPost.imageUrl ? (
+                      <img 
+                        src={relatedPost.imageUrl} 
+                        alt={relatedPost.title} 
+                        className="w-full h-full object-cover" 
+                      />
+                    ) : (
+                      <div className="h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                        <span className="text-gray-500">Star Dental</span>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="p-6">

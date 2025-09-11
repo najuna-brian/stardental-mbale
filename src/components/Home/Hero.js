@@ -6,37 +6,40 @@ import { TypingText, CountUp, FloatingElement, MouseFollowElement } from '../Com
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-16 lg:pt-0">
-      {/* Background Image with Parallax Effect */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-28 lg:pt-32">
+      {/* Background Image with Parallax Effect and Blur */}
       <motion.div 
         className="absolute inset-0 z-0"
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <img 
-          src="/images/clinic/clinical-room-2.JPG" 
-          alt="Star Dental Clinic Interior"
-          className="w-full h-full object-cover"
-        />
-        <motion.div 
-          className="absolute inset-0 bg-primary-900/40"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-        ></motion.div>
+        <div className="relative w-full h-full">
+          <img 
+            src="/images/clinic/clinical-room-2.JPG" 
+            alt="Star Dental Clinic Interior"
+            className="w-full h-full object-cover filter blur-[4px]"
+            style={{ transform: 'scale(1.05)' }}
+          />
+          <motion.div 
+            className="absolute inset-0 bg-primary-900/60"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+          ></motion.div>
+        </div>
       </motion.div>
       
       {/* Floating Background Elements */}
       <FloatingElement>
-        <div className="absolute top-20 left-10 w-20 h-20 bg-secondary-500/20 rounded-full blur-xl"></div>
+        <div className="absolute top-32 left-10 w-20 h-20 bg-secondary-500/20 rounded-full blur-xl"></div>
       </FloatingElement>
       <FloatingElement>
         <div className="absolute bottom-20 right-10 w-32 h-32 bg-primary-300/20 rounded-full blur-xl" style={{ animationDelay: '1s' }}></div>
       </FloatingElement>
       
       {/* Content */}
-  <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto mt-8 md:mt-4 lg:mt-0">
+  <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto mt-16 md:mt-20 lg:mt-12">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
