@@ -7,7 +7,7 @@ import {
 
 const QuickInfo = () => {
   return (
-    <section className="bg-white py-8 shadow-lg relative z-10 -mt-16">
+    <section className="bg-white py-8 shadow-lg relative z-10 -mt-8 md:mt-0 lg:mt-8">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Location */}

@@ -160,6 +160,7 @@ const Services = () => {
               <MouseFollowElement key={service.id} strength={0.1}>
                 <HoverCard effect="lift" className="h-full">
                   <motion.div
+                    id={service.id}
                     className={`bg-white rounded-2xl shadow-lg overflow-hidden border-2 ${colorClasses[service.color].border} ${colorClasses[service.color].hover} transition-all duration-500 hover:shadow-2xl h-full`}
                     initial={{ opacity: 0, y: 50, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -497,6 +498,24 @@ const Services = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Back to Top Button */}
+      <motion.div 
+        className="fixed bottom-8 right-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1 }}
+      >
+        <a 
+          href="#" 
+          className="bg-primary-500 hover:bg-primary-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+          aria-label="Back to top"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+        </a>
+      </motion.div>
     </div>
   );
 };

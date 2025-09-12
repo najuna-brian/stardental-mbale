@@ -100,7 +100,7 @@ const ContactPreview = () => {
                   <h3 className="font-semibold text-gray-800 mb-2">Opening Hours</h3>
                   <div className="text-gray-600 space-y-1">
                     <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                    <p>Saturday: 8:00 AM - 2:00 PM</p>
+                    <p>Saturday: 8:00 AM - 6:00 PM</p>
                     <p className="text-red-600">Sunday: Emergency Only</p>
                   </div>
                 </div>

@@ -21,15 +21,15 @@ const Booking = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const services = [
-    { id: 'general-checkup', name: 'General Checkup', duration: '30 min', price: 'UGX 15,000' },
-    { id: 'teeth-cleaning', name: 'Teeth Cleaning', duration: '45 min', price: 'From UGX 100,000' },
-    { id: 'teeth-whitening', name: 'Teeth Whitening', duration: '60 min', price: 'UGX 700,000' },
-    { id: 'filling', name: 'Dental Filling', duration: '45 min', price: 'From UGX 50,000' },
-    { id: 'root-canal', name: 'Root Canal Treatment', duration: '90 min', price: 'Variable' },
-    { id: 'extraction', name: 'Tooth Extraction', duration: '30 min', price: 'UGX 120,000' },
-    { id: 'cosmetic-consultation', name: 'Cosmetic Consultation', duration: '30 min', price: 'UGX 15,000' },
-    { id: 'orthodontic-consultation', name: 'Orthodontic Consultation', duration: '45 min', price: 'UGX 15,000' },
-    { id: 'emergency', name: 'Emergency Visit', duration: '30 min', price: 'Variable' }
+    { id: 'general-checkup', name: 'General Checkup', duration: '30 min', price: ' ' },
+    { id: 'teeth-cleaning', name: 'Teeth Cleaning', duration: '45 min', price: ' ' },
+    { id: 'teeth-whitening', name: 'Teeth Whitening', duration: '60 min', price: ' ' },
+    { id: 'filling', name: 'Dental Filling', duration: '45 min', price: ' ' },
+    { id: 'root-canal', name: 'Root Canal Treatment', duration: '90 min', price: ' ' },
+    { id: 'extraction', name: 'Tooth Extraction', duration: '30 min', price: ' ' },
+    { id: 'cosmetic-consultation', name: 'Cosmetic Consultation', duration: '30 min', price: ' ' },
+    { id: 'orthodontic-consultation', name: 'Orthodontic Consultation', duration: '45 min', price: ' ' },
+    { id: 'emergency', name: 'Emergency Visit', duration: '30 min', price: ' ' }
   ];
 
   const timeSlots = [
@@ -91,7 +91,7 @@ const Booking = () => {
             <h1 className="text-4xl font-bold font-poppins mb-4">
               Book Your <span className="text-secondary-400">Appointment</span>
             </h1>
-            <p className="text-xl text-primary-100 max-w-2xl mx-auto">
+            <p className="text-xl text-primary-500 max-w-2xl mx-auto">
               Schedule your visit to Star Dental Clinic. Choose your preferred service, 
               date, and time, and we'll take care of the rest.
             </p>

@@ -14,36 +14,42 @@ import {
 const ServicesPreview = () => {
   const services = [
     {
+      id: 'general-dentistry',
       icon: HeartIcon,
       title: 'General Dentistry',
       description: 'Comprehensive oral health care including checkups, cleanings, and preventive treatments.',
       color: 'primary'
     },
     {
+      id: 'cosmetic-dentistry',
       icon: SparklesIcon,
       title: 'Cosmetic Dentistry',
       description: 'Transform your smile with veneers, bonding, and aesthetic dental solutions.',
       color: 'secondary'
     },
     {
+      id: 'orthodontics',
       icon: AdjustmentsHorizontalIcon,
       title: 'Orthodontics',
       description: 'Straighten teeth and correct bite issues with modern orthodontic treatments.',
       color: 'accent'
     },
     {
+      id: 'teeth-whitening',
       icon: SunIcon,
       title: 'Teeth Whitening',
       description: 'Professional whitening treatments for a brighter, more confident smile.',
       color: 'primary'
     },
     {
+      id: 'dental-implants',
       icon: CubeIcon,
       title: 'Dental Implants',
       description: 'Permanent tooth replacement solutions that look and feel natural.',
       color: 'secondary'
     },
     {
+      id: 'pediatric-dentistry',
       icon: FaceSmileIcon,
       title: 'Pediatric Dentistry',
       description: 'Specialized dental care for children in a comfortable, friendly environment.',
@@ -96,10 +102,13 @@ const ServicesPreview = () => {
                   {service.description}
                 </p>
                 
-                <button className="text-primary-500 hover:text-primary-600 font-medium group flex items-center space-x-2">
+                <Link 
+                  to={`/services#${service.id}`} 
+                  className="text-primary-500 hover:text-primary-600 font-medium group flex items-center space-x-2"
+                >
                   <span>Learn More</span>
                   <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </Link>
               </div>
             </motion.div>
           ))}

@@ -10,9 +10,10 @@ import {
   PhotoIcon
 } from '@heroicons/react/24/outline';
 import { blogService } from '../../firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/config';
 import toast from 'react-hot-toast';
+import imageCompression from 'browser-image-compression';
 
 const BlogManager = () => {
   const [posts, setPosts] = useState([]);
@@ -23,6 +24,8 @@ const BlogManager = () => {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [compressingImage, setCompressingImage] = useState(false);
   
   const fileInputRef = useRef(null);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
@@ -77,7 +80,7 @@ const BlogManager = () => {
     reset();
   };
   
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
     
@@ -87,54 +90,161 @@ const BlogManager = () => {
       return;
     }
     
-    // Check file size (limit to 2MB)
-    if (file.size > 2 * 1024 * 1024) {
-      toast.error('Image size should be less than 2MB');
-      return;
-    }
-    
-    setImageFile(file);
-    
-    // Create preview
+    // Create preview immediately for better UX
     const reader = new FileReader();
     reader.onload = (e) => {
       setImagePreview(e.target.result);
     };
     reader.readAsDataURL(file);
+    
+    // Check file size and compress if needed
+    if (file.size > 1 * 1024 * 1024) { // If larger than 1MB
+      try {
+        setCompressingImage(true);
+        toast.loading('Optimizing image...', { id: 'compressing' });
+        
+        const options = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 1200,
+          useWebWorker: true
+        };
+        
+        const compressedFile = await imageCompression(file, options);
+        console.log('Compressed size:', compressedFile.size / 1024 / 1024, 'MB');
+        
+        setImageFile(compressedFile);
+        toast.success('Image optimized for faster upload', { id: 'compressing' });
+      } catch (error) {
+        console.error('Error compressing image:', error);
+        
+        // If compression fails, check if original is small enough
+        if (file.size > 2 * 1024 * 1024) {
+          toast.error('Image size should be less than 2MB', { id: 'compressing' });
+          setImageFile(null);
+          setImagePreview('');
+          if (fileInputRef.current) fileInputRef.current.value = '';
+          return;
+        } else {
+          // Use original if it's under 2MB
+          setImageFile(file);
+          toast.success('Using original image', { id: 'compressing' });
+        }
+      } finally {
+        setCompressingImage(false);
+      }
+    } else {
+      // Small enough, use as-is
+      setImageFile(file);
+    }
   };
   
   const uploadImage = async (file) => {
     if (!file) return null;
     
     setUploadingImage(true);
+    setUploadProgress(0);
+    const uploadToastId = toast.loading('Uploading image... 0%');
+    
     try {
+      console.log("Starting image upload. Storage instance:", !!storage);
+      
       // Create a unique filename
-      const filename = `blog-${Date.now()}-${file.name}`;
+      const filename = `blog-${Date.now()}-${file.name.replace(/\s+/g, '_')}`;
+      console.log("Creating storage reference for:", `blog-images/${filename}`);
+      
       const storageRef = ref(storage, `blog-images/${filename}`);
+      console.log("Storage reference created:", !!storageRef);
       
-      // Upload file
-      const snapshot = await uploadBytes(storageRef, file);
-      
-      // Get download URL
-      const downloadUrl = await getDownloadURL(snapshot.ref);
-      return downloadUrl;
+      // Use uploadBytesResumable for progress tracking
+      return new Promise((resolve, reject) => {
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        
+        uploadTask.on('state_changed', 
+          // Progress function
+          (snapshot) => {
+            const progress = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            console.log(`Upload progress: ${progress}%`);
+            setUploadProgress(progress);
+            toast.loading(`Uploading image... ${progress}%`, { id: uploadToastId });
+          },
+          // Error function
+          (error) => {
+            console.error('Error uploading image:', error);
+            console.error('Error details:', error.code, error.message);
+            toast.error(`Failed to upload image: ${error.message}`, { id: uploadToastId });
+            setUploadingImage(false);
+            reject(error);
+          },
+          // Complete function
+          async () => {
+            // Get download URL
+            console.log("Upload completed. Getting download URL...");
+            try {
+              const downloadUrl = await getDownloadURL(uploadTask.snapshot.ref);
+              console.log("Download URL retrieved:", downloadUrl);
+              toast.success('Image uploaded successfully!', { id: uploadToastId });
+              setUploadingImage(false);
+              resolve(downloadUrl);
+            } catch (error) {
+              console.error('Error getting download URL:', error);
+              toast.error(`Failed to get image URL: ${error.message}`, { id: uploadToastId });
+              setUploadingImage(false);
+              reject(error);
+            }
+          }
+        );
+      });
     } catch (error) {
-      console.error('Error uploading image:', error);
-      toast.error('Failed to upload image');
-      return null;
-    } finally {
+      console.error('Error initiating upload:', error);
+      toast.error(`Failed to start image upload: ${error.message}`, { id: uploadToastId });
       setUploadingImage(false);
+      return null;
     }
   };
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
+    console.log("Starting blog post submission", data);
+    
+    // Check if required fields are present
+    const requiredFields = ['title', 'category', 'author', 'excerpt', 'content'];
+    const missingFields = requiredFields.filter(field => !data[field]);
+    
+    if (missingFields.length > 0) {
+      console.error("Missing required fields:", missingFields);
+      toast.error(`Missing required fields: ${missingFields.join(', ')}`);
+      setIsSubmitting(false);
+      return;
+    }
+    
+    // Check if image is still compressing
+    if (compressingImage) {
+      toast.error('Please wait for image optimization to complete');
+      return;
+    }
+    
+    const submitToastId = toast.loading(
+      imageFile ? 'Creating blog post (image upload may take a moment)...' : 'Creating blog post...'
+    );
     
     try {
       // Upload image if there's a new one
       let imageUrl = null;
       if (imageFile) {
+        console.log("Uploading image file:", imageFile.name || 'Compressed image');
+        toast.loading('Uploading image before creating post...', { id: submitToastId });
         imageUrl = await uploadImage(imageFile);
+        
+        if (!imageUrl) {
+          toast.error('Failed to upload image. Try a smaller image or skip the image.', { id: submitToastId });
+          setIsSubmitting(false);
+          return;
+        }
+        
+        console.log("Image uploaded successfully, URL:", imageUrl);
+        toast.loading('Image uploaded! Creating blog post...', { id: submitToastId });
       }
       
       const postData = {
@@ -144,20 +254,26 @@ const BlogManager = () => {
         ...(imageUrl ? { imageUrl } : {}),
         ...(editingPost?.imageUrl && !imageFile ? { imageUrl: editingPost.imageUrl } : {})
       };
+      console.log("Post data prepared:", postData);
 
       if (editingPost) {
+        console.log("Updating existing post with ID:", editingPost.id);
         await blogService.updatePost(editingPost.id, postData);
-        toast.success('Blog post updated successfully!');
+        console.log("Post updated successfully");
+        toast.success('Blog post updated successfully!', { id: submitToastId });
       } else {
-        await blogService.addPost(postData);
-        toast.success('Blog post created successfully!');
+        console.log("Creating new post");
+        const newPost = await blogService.addPost(postData);
+        console.log("Post created successfully, new ID:", newPost.id);
+        toast.success('Blog post created successfully!', { id: submitToastId });
       }
       
       closeModal();
       fetchPosts();
     } catch (error) {
       console.error('Error saving post:', error);
-      toast.error('Failed to save blog post');
+      // Show more detailed error message
+      toast.error(`Failed to save blog post: ${error.message}`, { id: submitToastId });
     } finally {
       setIsSubmitting(false);
     }
@@ -401,16 +517,35 @@ const BlogManager = () => {
                         <img 
                           src={imagePreview} 
                           alt="Blog preview" 
-                          className="w-32 h-32 object-cover rounded-lg"
+                          className={`w-32 h-32 object-cover rounded-lg ${compressingImage ? 'opacity-50' : ''}`}
                         />
+                        {compressingImage && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="loading-spinner w-8 h-8"></div>
+                            <span className="ml-2 text-sm font-medium">Optimizing...</span>
+                          </div>
+                        )}
+                        {uploadingImage && (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-40 rounded-lg text-white">
+                            <div className="w-20 h-1 bg-gray-300 rounded-full overflow-hidden mb-1">
+                              <div 
+                                className="h-full bg-primary-500 transition-all duration-300"
+                                style={{ width: `${uploadProgress}%` }}
+                              ></div>
+                            </div>
+                            <span className="text-xs font-medium">{uploadProgress}%</span>
+                          </div>
+                        )}
                         <button 
                           type="button"
                           onClick={() => {
                             setImagePreview('');
                             setImageFile(null);
+                            setUploadProgress(0);
                             if (fileInputRef.current) fileInputRef.current.value = '';
                           }}
                           className="absolute top-0 right-0 bg-red-500 rounded-full p-1 text-white transform translate-x-1/2 -translate-y-1/2"
+                          disabled={uploadingImage || compressingImage}
                         >
                           <XMarkIcon className="w-4 h-4" />
                         </button>
@@ -420,6 +555,7 @@ const BlogManager = () => {
                         type="button"
                         onClick={() => fileInputRef.current?.click()}
                         className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                        disabled={uploadingImage || compressingImage}
                       >
                         <PhotoIcon className="h-5 w-5 mr-2 text-gray-400" />
                         Upload Image
@@ -431,11 +567,17 @@ const BlogManager = () => {
                       accept="image/*"
                       onChange={handleImageChange}
                       className="hidden"
+                      disabled={uploadingImage || compressingImage}
                     />
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
-                    Recommended: JPG, PNG. Max size: 2MB
+                    Recommended: JPG, PNG. Images larger than 1MB will be automatically optimized.
                   </p>
+                  {uploadingImage && (
+                    <p className="mt-1 text-xs text-primary-600">
+                      Uploading image... Please wait until it completes.
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -476,13 +618,23 @@ const BlogManager = () => {
                   </button>
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || uploadingImage || compressingImage}
                     className="btn-primary flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
                         <div className="loading-spinner w-4 h-4"></div>
                         <span>{editingPost ? 'Updating...' : 'Creating...'}</span>
+                      </>
+                    ) : uploadingImage ? (
+                      <>
+                        <div className="loading-spinner w-4 h-4"></div>
+                        <span>Uploading Image ({uploadProgress}%)...</span>
+                      </>
+                    ) : compressingImage ? (
+                      <>
+                        <div className="loading-spinner w-4 h-4"></div>
+                        <span>Optimizing Image...</span>
                       </>
                     ) : (
                       <span>{editingPost ? 'Update Post' : 'Create Post'}</span>

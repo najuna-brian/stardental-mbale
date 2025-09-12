@@ -11,7 +11,15 @@ const BlogPreview = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        console.log("Fetching recent blog posts...");
         const recentPosts = await blogService.getRecentPosts(3);
+        console.log("Recent posts fetched:", recentPosts);
+        
+        // Log image URLs to debug
+        recentPosts.forEach(post => {
+          console.log(`Post "${post.title}" image URL:`, post.imageUrl);
+        });
+        
         setPosts(recentPosts);
       } catch (error) {
         console.error('Error fetching blog posts:', error);
@@ -106,11 +114,16 @@ const BlogPreview = () => {
                 >
                   {/* Featured Image */}
                   <div className="relative h-48 bg-primary-50 overflow-hidden">
-                    {post.image ? (
+                    {post.imageUrl || post.image ? (
                       <img 
-                        src={post.image} 
+                        src={post.imageUrl || post.image} 
                         alt={post.title}
                         className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                        onError={(e) => {
+                          console.log("Blog preview image failed to load:", post.imageUrl || post.image);
+                          e.target.onerror = null;
+                          e.target.src = "/images/star-dental-logo.jpeg"; // Fallback image
+                        }}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
@@ -145,7 +158,20 @@ const BlogPreview = () => {
                         </div>
                         <div className="flex items-center space-x-1">
                           <CalendarIcon className="w-4 h-4" />
-                          <span>{new Date(post.date || post.createdAt?.toDate()).toLocaleDateString()}</span>
+                          <span>
+                            {(() => {
+                              try {
+                                // Handle various date formats
+                                const date = post.date ? new Date(post.date) :
+                                  post.createdAt?.toDate ? post.createdAt.toDate() : 
+                                  post.createdAt ? new Date(post.createdAt) : new Date();
+                                return date.toLocaleDateString();
+                              } catch (e) {
+                                console.error("Error formatting date:", e);
+                                return "Recent";
+                              }
+                            })()}
+                          </span>
                         </div>
                       </div>
                       <span className="font-medium">{post.readTime || '5 min read'}</span>

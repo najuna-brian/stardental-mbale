@@ -188,6 +188,11 @@ const BlogPost = () => {
                   src={post.imageUrl} 
                   alt={post.title} 
                   className="w-full h-full object-cover" 
+                  onError={(e) => {
+                    console.log("Image failed to load:", post.imageUrl);
+                    e.target.onerror = null;
+                    e.target.src = "/images/star-dental-logo.jpeg"; // Fallback image
+                  }}
                 />
               </div>
             ) : (
@@ -312,6 +317,11 @@ const BlogPost = () => {
                         src={relatedPost.imageUrl} 
                         alt={relatedPost.title} 
                         className="w-full h-full object-cover" 
+                        onError={(e) => {
+                          console.log("Related post image failed to load:", relatedPost.imageUrl);
+                          e.target.onerror = null;
+                          e.target.src = "/images/star-dental-logo.jpeg"; // Fallback image
+                        }}
                       />
                     ) : (
                       <div className="h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
